@@ -6,6 +6,7 @@ import java.util.Scanner;
  * This program calculates how a change should be given
  * The program starts from 20 dollar bills, to 10 dollar bills, and so on
  * @author Kendrick Pham
+ * 
  */
 
 public class changeCalculatorDriver {
