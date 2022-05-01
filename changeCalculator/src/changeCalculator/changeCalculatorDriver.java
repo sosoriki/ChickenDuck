@@ -5,8 +5,7 @@ import java.util.Scanner;
  * This is Homework #1, Problem #1
  * This program calculates how a change should be given
  * The program starts from 20 dollar bills, to 10 dollar bills, and so on
- * @author Marshiie
- *
+ * @author Kendrick Pham
  */
 
 public class changeCalculatorDriver {
