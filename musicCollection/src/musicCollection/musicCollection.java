@@ -25,14 +25,14 @@ public class musicCollection {
 	 */
 	
 	public static void main(String[] args) {
-		song song1 = new song("Never gonna give you up", "Rick Astley", "Meme song");
+		song song1 = new song("Never gonna give you up", "Rick Astley", "Meme song");					//creating songs and albums
 		song song2 = new song("Baby", "Justin Bieber", "Pop");
 		song song3 = new song("Grenade", "Bruno Mars");
-		album album1 = new album("Whenever you need somebody", song1, 1);
+		album album1 = new album("Whenever you need somebody", song1, 5);
 		album album2 = new album("My World 2.0", song2, 3);
 		album album3 = new album("Doo-Wops & Hooligans", song3);
 		int choice = 1;
-		while(choice == 0 || choice == 1 || choice == 2 || choice == 3) {
+		while(choice == 0 || choice == 1 || choice == 2 || choice == 3) {								//main while loop for the program
 			System.out.printf("Album Selection:\n[1] %s\n[2] %s\n[3] %s\nSelect an Album (0 to quit): ", album1.getTitle(), album2.getTitle(), album3.getTitle());
 			choice = input.nextInt();
 			System.out.printf("\n");
@@ -41,7 +41,7 @@ public class musicCollection {
 				System.exit(0);
 			}
 			else if(choice == 1) {
-				albumOptions(album1);
+				albumOptions(album1);																	//inoking the albumOptions method below
 			}
 			else if(choice == 2) {
 				albumOptions(album2);
@@ -49,7 +49,7 @@ public class musicCollection {
 			else if(choice == 3) {
 				albumOptions(album3);
 			}
-			else {
+			else {																						//checker that force closes program if invalid option
 				System.out.printf("You didn't enter a valid option!\n");
 				System.exit(0);
 			}
@@ -70,7 +70,7 @@ public class musicCollection {
 	public static void albumOptions(album album) {
 		int choice = 1;
 		System.out.printf("%s\n", album.toString());
-		while(choice != -99999) {
+		while(choice != -99999) {																								//set to not equal -99999 just to get while loop going, upon an input of 0, it will exit
 			System.out.printf("Album Options:\n[1] Get Favorite Track\n[2] Change Genre\n[0] Return\nSelection: ");
 			choice = input.nextInt();
 			System.out.printf("\n");
