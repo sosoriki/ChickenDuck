@@ -3,7 +3,10 @@ package arrayList;
 /**
  * 
  * Arraylist class that creates
- * the methods for an arraylist
+ * the methods for an arraylist.
+ * Methods have been repurposed 
+ * from an old arraylist project
+ * done in university
  * @author Kendrick Pham
  *
  */
@@ -42,6 +45,17 @@ public class arrayList <T> implements list <T>{
 	 * @param item
 	 * @param index
 	 */
+	
+	  public void add(T item) {												//regular add method
+	       if(size < capacity){
+	           array[size] = item;
+	           size++; 
+	       }
+	       else{ 
+	           this.regrow();
+	           this.add(item);
+	       }
+	    }
 
 	public void add(T item, int index) {
 		if(index < 0 || index > size) {										//checks if there is a valid index
@@ -49,16 +63,11 @@ public class arrayList <T> implements list <T>{
 			return;
 		}
 		else if(index == size) {											//adds at index
-			this.add(item, index);
+			this.add(item);
 		}
 		else {
-			if(this.size == this.capacity) {								//check if there is space to put it in and if not, makes an arraylist doubled in size
-				this.capacity*=2;
-				T[] temp = (T[]) new Object [this.capacity];
-				for(int i = 0; i < array.length; i++) {
-					temp[i] = array[i];
-				}
-				array = temp;
+			if(this.size == this.capacity) {								//check if there is space to put it in and if not, calls private method regrow
+				regrow();
 			}
 			for(int i = size; i > index; i--) {
 				array[i] = array [i-1];
@@ -67,6 +76,16 @@ public class arrayList <T> implements list <T>{
 			size++;															//updates size
 		}
 		
+	}
+	
+	private void regrow() {													//doubles array size
+		this.capacity*=2;
+		T[] temp = (T[]) new Object [this.capacity];
+		for(int i = 0; i < array.length; i++) {
+			temp[i] = array[i];
+		}
+		array = temp;
+		System.out.printf("Array size increased\n");
 	}
 
 	public void clear() {
@@ -114,14 +133,14 @@ public class arrayList <T> implements list <T>{
 		return -1;
 	}
 
-	public boolean isEmpty() {
+	public boolean isEmpty() {													//checks if array is empty from the size since size is increased when something is added
 		if(size == 0) {
 			return true;
 		}
 		return false;
 	}
 
-	public int size() {
+	public int size() {															//returns private int size 
 		return this.size;
 	}
 	
