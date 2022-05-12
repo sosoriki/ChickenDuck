@@ -2,11 +2,21 @@ package linkedList;
 
 import linkedList.node;
 
+/**
+ * 
+ * node class that creates 
+ * the node and its data
+ * with next and prev
+ * @author Kendrick Pham
+ *
+ * @param <T>
+ */
+
 public class node <T> {
-	public T data;				//data
-	public node<T> next;		//link
-	public node<T> prev;		//link backwards
-	public node(T data) {		//constructor
+	public T data;
+	public node<T> next;
+	public node<T> prev;
+	public node(T data) {
 		this.data = data;
 		this.next = null;
 		this.prev = null;
