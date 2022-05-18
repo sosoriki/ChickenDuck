@@ -1,15 +1,54 @@
 package stackAndQueue;
 
+/**
+ * 
+ * queue class
+ * first in, first out
+ * @author Kendrick Pham
+ *
+ * @param <V>
+ */
+
 public class queue <V> {
+	
+	/**
+	 * 
+	 * variables of the
+	 * class
+	 * 
+	 * @param maxSize
+	 * @param counter
+	 * @param array
+	 */
 	
 	private int maxSize;
 	private int counter = 0;
 	private V[] array;
 	
+	/**
+	 * 
+	 * constructor of the
+	 * queue that makes
+	 * maxSize into the size 
+	 * of the array that will 
+	 * be used
+	 * @param maxSize
+	 */
+	
 	public queue(int maxSize) {
 		this.maxSize = maxSize;
 		array = (V[]) new Object[this.maxSize];
 	}
+	
+	/**
+	 * 
+	 * methods of the queue
+	 * adds value into the back
+	 * of the queue.
+	 * removes/poll value in
+	 * front of the queue.
+	 * @param value
+	 */
 	
 	public void add (V value) {
 		if(counter == 0) {

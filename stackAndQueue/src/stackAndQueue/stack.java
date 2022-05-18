@@ -1,15 +1,52 @@
 package stackAndQueue;
 
+/**
+ * 
+ * stack class
+ * last in, first out
+ * @author Kendrick Pham
+ *
+ * @param <V>
+ */
+
 public class stack <V> {
+	
+	/**
+	 * variables of the class
+	 * 
+	 * @param maxSize
+	 * @param counter
+	 * @param array
+	 */
 	
 	private int maxSize;
 	private int counter = 0;
 	private V[] array;
 	
+	/**
+	 * 
+	 * the constructor of the
+	 * stack which makes the
+	 * maxSize into the size
+	 * of the array that will 
+	 * be used
+	 * @param maxSize
+	 */
+	
 	public stack(int maxSize) {
 		this.maxSize = maxSize;
 		array = (V[]) new Object[this.maxSize];
 	}
+	
+	/**
+	 * 
+	 * methods of the stack
+	 * push puts newest element
+	 * in front.
+	 * pop removes the element
+	 * in front.
+	 * @param element
+	 */
 	
 	public void push (V element) {
 		if(counter == 0) {
