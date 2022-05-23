@@ -1,0 +1,22 @@
+.container{
+	padding: 4rem;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.card{
+	padding: 2rem;
+	margin: 0 auto;
+}
+
+.h1{
+	font-size: 2rem;
+}
+
+.input-container{
+	border: none;
+	width: 100%;
+	height: 10rem;
+	border: 0.1rem solid black;
+	overflow: auto;
+}
