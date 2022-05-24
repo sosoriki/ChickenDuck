@@ -6,44 +6,56 @@ import java.util.Set;
 
 public class LinearProbingHashTable<K, V> implements GradableMap<K, V> {
 	
-	private Object[] entries;
+	private HashTableEntry[] entries;
 	private double loadFactor;
 	private int size;
 	
 	public LinearProbingHashTable(){
 		this.size = 11;
 		this.loadFactor = 0.75;
-		entries = new Object[11];
+		entries = new HashTableEntry[11];
 	}
 	
 	public LinearProbingHashTable(int size){
 		this.size = size;
 		this.loadFactor = 0.75;
-		entries = new Object[size];
+		entries = new HashTableEntry[size];
 	}
 
 	public LinearProbingHashTable(int size, double loadFactor){
 		this.size = size;
 		this.loadFactor = loadFactor;
-		entries = new Object[size];
+		entries = new HashTableEntry[size];
 	}
 	
 	@Override
 	public void clear() {
 		Arrays.fill(entries, null);
 		this.size = 0;
-		entries = new Object[this.size];
+		entries = new HashTableEntry[this.size];
 	}
 
 	@Override
 	public boolean containsKey(Object arg0) {
-		// TODO Auto-generated method stub
+		int iterator = 0;
+		while(iterator < entries.length){
+			if (entries[iterator].getKey() == ((HashTableEntry) arg0)) {
+				return true;
+			}
+			iterator++;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean containsValue(Object arg0) {
-		// TODO Auto-generated method stub
+		int iterator = 0;
+		while(iterator < entries.length){
+			if (entries[iterator].getValue() == ((HashTableEntry) arg0)) {
+				return true;
+			}
+			iterator++;
+		}
 		return false;
 	}
 
