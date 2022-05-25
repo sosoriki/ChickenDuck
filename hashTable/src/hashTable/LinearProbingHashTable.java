@@ -87,7 +87,28 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V> {
 
 	@Override
 	public V put(K key, V value) {
-		// TODO Auto-generated method stub
+		if(key == null) throw new IllegalArgumentException("NullPointerException");
+		if(value == null) {
+			System.out.printf("Value was null!\n");
+			return null;
+		}
+		HashTableEntry entry = new HashTableEntry(key, value);
+		if((int)key > this.size) {
+			int index = (int)key % size;
+			for(int i = 0; i < entries.length; i++) {
+				if(i == index) {
+					if(entries[i] != null) {
+						index++;
+					}
+					else if((String)entries[i].getValue() == "-") {
+						entries[i] = entry;
+					}
+					else {
+						entries[i] = entry;
+					}
+				}
+			}
+		}
 		return null;
 	}
 
@@ -99,7 +120,13 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V> {
 
 	@Override
 	public V remove(Object key) {
-		// TODO Auto-generated method stub
+		if((int)key > size) {
+			int index = (int)key % size;
+			entries[index].setValue("-");
+		}
+		else {
+			entries[(int)key].setValue("-");
+		}
 		return null;
 	}
 
