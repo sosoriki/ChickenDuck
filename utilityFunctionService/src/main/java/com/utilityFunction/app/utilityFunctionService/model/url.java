@@ -15,35 +15,35 @@ public class url {
 	@Column
 	private int timesAccessed;
 	
-	private Long getID() {
+	public Long getID() {
 		return this.id;
 	}
 	
-	private Long getOriginalURL() {
+	public Long getOriginalURL() {
 		return this.originalURL;
 	}
 	
-	private Long gettinyURL() {
+	public Long getTinyURL() {
 		return this.tinyURL;
 	}
 	
-	private int getTimesAccessed() {
+	public int getTimesAccessed() {
 		return this.timesAccessed;
 	}
 	
-	private void setID(Long id) {
+	public void setID(Long id) {
 		this.id = id;
 	}
 	
-	private void setOriginalURL(Long originalURL) {
+	public void setOriginalURL(Long originalURL) {
 		this.originalURL = originalURL;
 	}
 	
-	private void setTinyURL(Long tinyURL) {
+	public void setTinyURL(Long tinyURL) {
 		this.tinyURL = tinyURL;
 	}
 	
-	private void setTimesAccessed(int timesAccessed) {
+	public void setTimesAccessed(int timesAccessed) {
 		this.timesAccessed = timesAccessed;
 	}
 }
