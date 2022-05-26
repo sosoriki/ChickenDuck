@@ -1,6 +1,8 @@
 package hashTable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -81,8 +83,11 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V> {
 
 	@Override
 	public Set<K> keySet() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<K> set = new HashSet<K>();
+		for(int i = 0; i < entries.length; i++) {
+			set.add((K) entries[i].getKey());
+		}
+		return set;
 	}
 
 	@Override
@@ -114,7 +119,7 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V> {
 
 	@Override
 	public void putAll(Map<? extends K, ? extends V> otherMap) {
-		// TODO Auto-generated method stub
+		otherMap.forEach((K,V) -> put(K,V));
 		
 	}
 
@@ -137,8 +142,11 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V> {
 
 	@Override
 	public Collection<V> values() {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<V> collection = new ArrayList<V>();
+		for(int i = 0; i < entries.length; i++) {
+			collection.add((V) entries[i].getValue());
+		}
+		return collection;
 	}
 
 	@Override
@@ -149,14 +157,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V> {
 
 	@Override
 	public void setArray(HashTableEntry<K, V>[] array) {
-		// TODO Auto-generated method stub
-		
+		this.entries = array;
 	}
 
 	@Override
 	public void setSize(int size) {
 		this.size = size;
-		
 	}
 
 }
