@@ -6,14 +6,22 @@
   <div class="user-input">
     <input
     type="text"  name = "zipcode" formControlName="zipcode"
-    placeholder="zip code here" ngModel
+    placeholder="Enter Zip Code" ngModel
     >
-  <button type = "submit">Get weather</button>
+  <button type="submit">Get weather</button>
+  </div>
+  <div class="weather-output">
+    <p>Weather for Zip Code {{zipcode}}:</p>
+    <p>{{weather}}</p>
+  </div>
 
-  <p>zipcode entered is : {{zipcode}}  </p>
-  <p>Return weather: {{weather}}</p>
-  <p>---------------------------</p>
-  <div>Message from backend: </div>
-  <div>{{message}}</div>
- 
+  <div class="tester">
+    <p>zipcode entered is : {{zipcode}}  </p>
+    <p>Return weather: {{weather}}</p>
+    <p>---------------------------</p>
+    <div>Message from backend: </div>
+    <div>{{message}}</div>
+  </div>
+</div>
+
 

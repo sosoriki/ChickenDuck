@@ -1,0 +1,40 @@
+.container{
+	text-align: center;
+	background-image: url("https://media.istockphoto.com/vectors/blue-sky-and-clouds-seamless-vector-background-vector-id1163292935?k=20&m=1163292935&s=612x612&w=0&h=UkJc7uklb677HRh_Mn-5mrFM1cy4u8xJUxiYl4540eQ=");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 1000rem;
+	height: 80rem;
+    margin: 0 auto;
+    padding: 0;
+    position: center;
+}
+
+.header{
+	padding: 50px;
+	text-shadow: 3px 3px 10px white;
+}
+
+.user-input button{
+	border-radius: 8px;
+	transition-duration: 0.3s;
+	background-color: white;
+	color: black;
+}
+
+.user-input button:hover{
+	background-color: black;
+	color: white;
+}
+
+.user-input button:active{
+	transform: translateY(3px);
+}
+
+.weather-output{
+	padding: 1rem;
+	font-weight: bold;
+	height: 10rem;
+	position: center;
+}
+
