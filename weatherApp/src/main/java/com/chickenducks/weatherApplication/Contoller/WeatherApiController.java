@@ -14,7 +14,8 @@ import org.springframework.web.client.RestTemplate;
 public class WeatherApiController {
 
 
-    private static final String APIKEY = "9846d9ed0f08a27e943b6150269d6330";
+	//get API key from google doc and remember to remove when push
+    private static final String APIKEY = "";
 
     @RequestMapping("/testing")
     public String testing(){
