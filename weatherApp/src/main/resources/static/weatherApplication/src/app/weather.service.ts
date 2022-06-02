@@ -24,13 +24,12 @@ import { Weather } from './weather';
     public getMessage(): Observable<string>{
         return this.http.get<string> (`${this.apiServerUrl}/getMessage`,this.httpOptions);
       }
-    // request a weather from backend, supply with the zipcode that user input
-    public getWeather(zipcode : string): Observable<Weather>{
-      return this.http.get<Weather>(`${this.apiServerUrl}/getWeather/${zipcode}`,this.httpOptions)
+      
+    // request a weather from backend, address can be either{cityname,state} or {cityname}.
+    public getWeather(address : string): Observable<Weather>{
+      return this.http.get<Weather>(`${this.apiServerUrl}/getWeather/location/${address}`,this.httpOptions)
     }
-    public getWeatherApi(lat : number ,lon : number): Observable<Response>{
-      return this.http.get<Response>(`${this.apiServerUrl}/getWeatherApi/lat={lat}&lon={lon}`,this.httpOptions)
-    }
+
 
 
     

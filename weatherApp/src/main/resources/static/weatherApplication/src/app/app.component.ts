@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   public zipcode: string = "";
   public formdata: any;
   public weather!: Weather;
-  public result!: Response;
+
   constructor(private weatherService: WeatherService) { }
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
@@ -44,40 +44,24 @@ export class AppComponent implements OnInit {
 
   );
 }
-// send zipcode to backend and request a weather back
-  public getWeather(zipcode : string): void {
-    this.weatherService.getWeather(zipcode).subscribe(
+// send cityname to backend and request a weather back
+  public getWeather(address : string): void {
+    this.weatherService.getWeather(address).subscribe(
       (response: Weather) =>{
         this.weather = response;
+      },(error: HttpErrorResponse)=>{
+        alert(error.message)
+      }
+    );
+  }
 
-      },(error: HttpErrorResponse)=>{
-        alert(error.message)
-      }
-    );
-  }
-  public getWeatherApi(lat:number, lon:number): void {
-    this.weatherService.getWeatherApi(lat,lon).subscribe(
-      (response: Response) =>{
-        this.result = response;
-   
-      },(error: HttpErrorResponse)=>{
-        alert(error.message)
-      }
-    );
-  }
 
 // Button onclick event
-onclickSubmit(data: { zipcode: string; }): void{
-  this.zipcode = data.zipcode;
-
+onclickSubmit(data: { address: string; }): void{
   //invoke the get method
-  this.getWeather(data.zipcode);
+  this.getWeather(data.address);
 }
-onclickSubmit2(): void{
-  //invoke the get method
-  //this.getWeatherApi(data.lat,data.lon);
 
-}
 
 }
 

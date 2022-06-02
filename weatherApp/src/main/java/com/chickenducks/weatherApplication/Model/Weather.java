@@ -1,7 +1,5 @@
 package com.chickenducks.weatherApplication.Model;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,27 +12,19 @@ import java.io.Serializable;
 @Entity
 public class Weather implements Serializable {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String zipcode;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private double latitude;
     private double longitude;
-    private int temp;
-    private int max_temp;
-    private int min_temp;
+    private double temp;
+    private double max_temp;
+    private double min_temp;
     private String condition;
     private String description;
 
     public Weather() {
     }
 
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
 
     public double getLatitude() {
         return latitude;
@@ -52,27 +42,27 @@ public class Weather implements Serializable {
         this.longitude = longitude;
     }
 
-    public int getTemp() {
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 
-    public int getMax_temp() {
+    public double getMax_temp() {
         return max_temp;
     }
 
-    public void setMax_temp(int max_temp) {
+    public void setMax_temp(double max_temp) {
         this.max_temp = max_temp;
     }
 
-    public int getMin_temp() {
+    public double getMin_temp() {
         return min_temp;
     }
 
-    public void setMin_temp(int min_temp) {
+    public void setMin_temp(double min_temp) {
         this.min_temp = min_temp;
     }
 
@@ -90,5 +80,18 @@ public class Weather implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", temp=" + temp +
+                ", max_temp=" + max_temp +
+                ", min_temp=" + min_temp +
+                ", condition='" + condition + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

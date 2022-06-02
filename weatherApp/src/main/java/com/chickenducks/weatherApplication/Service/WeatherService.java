@@ -1,6 +1,8 @@
 package com.chickenducks.weatherApplication.Service;
 
 
+import com.chickenducks.weatherApplication.Model.Weather;
+
 public interface WeatherService {
 
     double getLatitude(String zipcode);
