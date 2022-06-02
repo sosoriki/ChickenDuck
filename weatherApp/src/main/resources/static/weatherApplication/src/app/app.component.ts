@@ -4,6 +4,7 @@ import { WeatherService } from './weather.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Weather } from './weather';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,12 +12,14 @@ import { Weather } from './weather';
 })
 
 export class AppComponent implements OnInit {
-  //! postfix operator to the variable name can used to ingore initialization
-  //or we can go to tsconfig.json set "strictPropertyInitialization": false 
+  //If we dont want to initialize a variable:
+  //1)! postfix operator to the variable name can used to ingore initialization
+  //2)or we can go to tsconfig.json set "strictPropertyInitialization": false 
   public message: string = "";
+  public zipcode: string = "";
   public formdata: any;
-  public zipcode!:string;
-  public weather !: Weather;
+  public weather!: Weather;
+  public result!: Response;
   constructor(private weatherService: WeatherService) { }
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
@@ -46,20 +49,35 @@ export class AppComponent implements OnInit {
     this.weatherService.getWeather(zipcode).subscribe(
       (response: Weather) =>{
         this.weather = response;
-        console.log(response);
+
+      },(error: HttpErrorResponse)=>{
+        alert(error.message)
+      }
+    );
+  }
+  public getWeatherApi(lat:number, lon:number): void {
+    this.weatherService.getWeatherApi(lat,lon).subscribe(
+      (response: Response) =>{
+        this.result = response;
+   
       },(error: HttpErrorResponse)=>{
         alert(error.message)
       }
     );
   }
 
-
 // Button onclick event
 onclickSubmit(data: { zipcode: string; }): void{
   this.zipcode = data.zipcode;
+
   //invoke the get method
-  this.getWeather(this.zipcode);
-  console.log(data.zipcode)}
+  this.getWeather(data.zipcode);
+}
+onclickSubmit2(): void{
+  //invoke the get method
+  //this.getWeatherApi(data.lat,data.lon);
+
+}
 
 }
 

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/weather")
 public class WeatherResource {
     private final WeatherService weatherServiceImpl;
 
@@ -26,15 +25,16 @@ public class WeatherResource {
         //return  ResponseEntity.ok("Hello my friend, it is raining..");
     }
 
+    //This method will be changed in the future update
     @GetMapping("/getWeather/{zipcode}")
     public ResponseEntity<Weather> getWeather(@PathVariable String zipcode) {
-        //TODO: add method in service that can validate the zipcode
+        //TODO: After finish set up API, this method might be removed or changed
         Weather weather = new Weather();
         weather.setZipcode(zipcode);
         weather.setLatitude(weatherServiceImpl.getLatitude(zipcode));
         weather.setLongitude(weatherServiceImpl.getLongitude(zipcode));
         weather.setMax_temp(weatherServiceImpl.getMaxWeather(weatherServiceImpl.getLatitude(zipcode), weatherServiceImpl.getLongitude(zipcode)));
-        weather.setMin_temp(weatherServiceImpl.getMaxWeather(weatherServiceImpl.getLatitude(zipcode), weatherServiceImpl.getLongitude(zipcode)));
+        weather.setMin_temp(weatherServiceImpl.getMinWeather(weatherServiceImpl.getLatitude(zipcode), weatherServiceImpl.getLongitude(zipcode)));
 
         return new ResponseEntity<Weather>(weather, HttpStatus.OK);
     }

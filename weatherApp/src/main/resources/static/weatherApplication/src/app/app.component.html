@@ -6,7 +6,7 @@
   <div class="user-input">
     <input
     type="text"  name = "zipcode" formControlName="zipcode"
-    placeholder="Enter Zip Code" ngModel
+    placeholder="Enter Zip Code" 
     >
   <button type="submit">Get weather</button>
   </div>
@@ -15,13 +15,23 @@
     <p>{{weather}}</p>
   </div>
 
+<!-- Testing how angular works, not the final design -->
   <div class="tester">
+    <div class="user-input">
+      <input
+      type="text"  placeholder="Enter Latitude" 
+      >
+      <input type="text" placeholder="Enter Longitude" 
+      >
+    <button (click)="onclickSubmit2()" type=submit>Get weather</button>
+    </div>
     <p>zipcode entered is : {{zipcode}}  </p>
     <p>Return weather: {{weather}}</p>
     <p>---------------------------</p>
     <div>Message from backend: </div>
     <div>{{message}}</div>
-  </div>
+    <div>{{result}}</div>
+  
 </div>
 
 

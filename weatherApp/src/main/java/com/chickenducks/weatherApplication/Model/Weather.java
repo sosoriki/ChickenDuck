@@ -1,28 +1,29 @@
 package com.chickenducks.weatherApplication.Model;
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+
+//Will change in future update
+
 @Entity
 public class Weather implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String zipcode;
     private double latitude;
     private double longitude;
+    private int temp;
     private int max_temp;
     private int min_temp;
-
-    public Weather(String zipcode, Long latitude, Long longitude, int max_temp, int min_temp) {
-        this.zipcode = zipcode;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.max_temp = max_temp;
-        this.min_temp = min_temp;
-    }
+    private String condition;
+    private String description;
 
     public Weather() {
     }
@@ -33,22 +34,6 @@ public class Weather implements Serializable {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
-    }
-
-    public int getMax_temp() {
-        return max_temp;
-    }
-
-    public void setMax_temp(int max_temp) {
-        this.max_temp = max_temp;
-    }
-
-    public int getMin_temp() {
-        return min_temp;
-    }
-
-    public void setMin_temp(int min_temp) {
-        this.min_temp = min_temp;
     }
 
     public double getLatitude() {
@@ -67,14 +52,43 @@ public class Weather implements Serializable {
         this.longitude = longitude;
     }
 
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "zipcode='" + zipcode + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", max_temp=" + max_temp +
-                ", min_temp=" + min_temp +
-                '}';
+    public int getTemp() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp = temp;
+    }
+
+    public int getMax_temp() {
+        return max_temp;
+    }
+
+    public void setMax_temp(int max_temp) {
+        this.max_temp = max_temp;
+    }
+
+    public int getMin_temp() {
+        return min_temp;
+    }
+
+    public void setMin_temp(int min_temp) {
+        this.min_temp = min_temp;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
