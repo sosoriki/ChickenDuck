@@ -16,7 +16,7 @@ import { Weather } from './weather';
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         "Access-Control-Allow-Origin": "*",
-      } ),responseType: 'text' as 'json'
+      } )
     };
 
     // Communicating between backed and frontend using HTTP
