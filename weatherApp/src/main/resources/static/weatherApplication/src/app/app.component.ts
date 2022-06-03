@@ -16,9 +16,12 @@ export class AppComponent implements OnInit {
   //1)! postfix operator to the variable name can used to ingore initialization
   //2)or we can go to tsconfig.json set "strictPropertyInitialization": false 
   public message: string = "";
-  public zipcode: string = "";
+  public address: string = "";
   public formdata: any;
   public weather!: Weather;
+  public condition!: string;
+  public temp!: number;
+  public description!: string;
 
   constructor(private weatherService: WeatherService) { }
   // A lifecycle hook that is called after Angular has initialized
@@ -26,7 +29,7 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     this.getMessage();
     this.formdata = new FormGroup({
-      zipcode: new FormControl(""),
+      address: new FormControl(""),
    });
   
  
