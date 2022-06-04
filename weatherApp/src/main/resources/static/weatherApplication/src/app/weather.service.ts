@@ -21,8 +21,8 @@ import { Weather } from './weather';
 
     // Communicating between backed and frontend using HTTP
     // receive a  message from backend
-    public getMessage(): Observable<string>{
-        return this.http.get<string> (`${this.apiServerUrl}/getMessage`,this.httpOptions);
+    public getMessage(){
+        return this.http.get (`${this.apiServerUrl}/getMessage`,{responseType: 'text'});
       }
       
     // request a weather from backend, address can be either{cityname,state} or {cityname}.

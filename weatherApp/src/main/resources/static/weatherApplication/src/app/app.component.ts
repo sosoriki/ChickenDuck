@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   // get a simple message from backend
   public getMessage(): void {
     this.weatherService.getMessage().subscribe(
-    (response: any) =>{
+    (response) =>{
       this.message = response;
       console.log(this.message);
     },(error: HttpErrorResponse) => {
