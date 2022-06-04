@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';//google place api autocomplete
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

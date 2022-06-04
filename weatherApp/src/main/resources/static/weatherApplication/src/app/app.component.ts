@@ -22,15 +22,31 @@ export class AppComponent implements OnInit {
   public condition!: string;
   public temp!: number;
   public description!: string;
+  public set:boolean = false;
+  //goolge place api autocomplete
+  title = 'google-places-autocomplete';
+  userAddress: string = ''
+  userLatitude: string = ''
+  userLongitude: string = ''
+  
+  handleAddressChange(address: any) {
+    this.userAddress = address.formatted_address
+    this.userLatitude = address.geometry.location.lat()
+    this.userLongitude = address.geometry.location.lng()
+    this.getWeather(this.userAddress);
+    this.set=true;
+  
+  }
 
   constructor(private weatherService: WeatherService) { }
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
   ngOnInit(){
-    this.getMessage();
-    this.formdata = new FormGroup({
-      address: new FormControl(""),
-   });
+    //this.getMessage();
+  //   this.formdata = new FormGroup({
+  //     address: new FormControl(""),
+  //  });
+ 
 
  
   }
@@ -47,16 +63,16 @@ export class AppComponent implements OnInit {
 
   );
 }
-// send cityname to backend and request a weather back
-  public getWeather(address : string): void {
-    this.weatherService.getWeather(address).subscribe(
-      (response: Weather) =>{
-        this.weather = response;
-      },(error: HttpErrorResponse)=>{
-        alert(error.message)
-      }
-    );
-  }
+// // send cityname to backend and request a weather back
+//   public getWeather(address : string): void {
+//     this.weatherService.getWeather(address).subscribe(
+//       (response: Weather) =>{
+//         this.weather = response;
+//       },(error: HttpErrorResponse)=>{
+//         alert(error.message)
+//       }
+//     );
+//   }
 
 
 // Button onclick event
@@ -65,6 +81,16 @@ onclickSubmit(data: { address: string; }): void{
   this.getWeather(data.address);
 }
 
+// send cityname to backend and request a weather back
+public getWeather(userAddress : string): void {
+  this.weatherService.getWeather(userAddress).subscribe(
+    (response: Weather) =>{
+      this.weather = response;
+    },(error: HttpErrorResponse)=>{
+      alert(error.message)
+    }
+  );
+}
 
 }
 
