@@ -2,6 +2,7 @@ package com.chickenducks.weatherApplication.Contoller;
 
 
 import com.chickenducks.weatherApplication.Model.Response;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

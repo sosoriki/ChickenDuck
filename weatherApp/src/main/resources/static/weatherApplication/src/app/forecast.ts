@@ -1,7 +1,5 @@
 export interface Forecast{
 
-    latitude: number;
-    longitude: number;
     temp: number;
     max_temp: number;
     min_temp: number;

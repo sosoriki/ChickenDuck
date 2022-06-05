@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   public address: string = "";
   public formdata: any;
   public weather!: Weather;
-  public forecasts!: Weather[];
+  public forecasts!: Forecast[];
   public condition!: string;
   public temp!: number;
   public description!: string;
@@ -86,9 +86,9 @@ public getWeather(userAddress : string): void {
   );
 }
 
-public getForecast(userAddress : string): void {
-  this.weatherService.getForecast(userAddress).subscribe(
-    (response: Weather[]) =>{
+public getForecast(address : string): void {
+  this.weatherService.getForecast(address).subscribe(
+    (response: Forecast[]) =>{
       this.forecasts = response;
       console.log(response);
     },(error: HttpErrorResponse)=>{
