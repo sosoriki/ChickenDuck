@@ -1,4 +1,4 @@
-export interface Weather{
+export interface Forecast{
 
     latitude: number;
     longitude: number;
@@ -8,5 +8,6 @@ export interface Weather{
     condition: string;
     description: string;
     date: string;
+
 
 }

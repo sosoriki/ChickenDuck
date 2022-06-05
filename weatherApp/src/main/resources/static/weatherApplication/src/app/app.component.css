@@ -3,7 +3,7 @@
 	background-image: url("https://media.istockphoto.com/vectors/blue-sky-and-clouds-seamless-vector-background-vector-id1163292935?k=20&m=1163292935&s=612x612&w=0&h=UkJc7uklb677HRh_Mn-5mrFM1cy4u8xJUxiYl4540eQ=");
 	background-repeat: no-repeat;
 	background-size: cover;
-	width: 1000rem;
+	width: 100rem;
 	height: 80rem;
     margin: 0 auto;
     padding: 0;
@@ -13,22 +13,6 @@
 .header{
 	padding: 50px;
 	text-shadow: 3px 3px 10px white;
-}
-
-.user-input button{
-	border-radius: 8px;
-	transition-duration: 0.3s;
-	background-color: white;
-	color: black;
-}
-
-.user-input button:hover{
-	background-color: black;
-	color: white;
-}
-
-.user-input button:active{
-	transform: translateY(3px);
 }
 
 .weather-output{
@@ -45,3 +29,62 @@
 	position: center;
 }
 
+.clear-container{
+	background-image: url("https://i.pinimg.com/736x/7c/f6/a3/7cf6a35c2ee2a4c25ab246b80caab3ee.jpg");
+}
+
+.cloud-container{
+
+}
+
+.ts-container{
+
+}
+
+.drizzle-container{
+
+}
+
+.rain-container{
+
+}
+
+.snow-container{
+
+}
+
+.mist-container{
+
+}
+
+.smoke-container{
+
+}
+
+.haze-container{
+
+}
+
+.dust-container{
+
+}
+
+.fog-container{
+
+}
+
+.sand-container{
+
+}
+
+.ash-container{
+
+}
+
+.sq-container{
+
+}
+
+.tornado-container{
+	
+}

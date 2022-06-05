@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Weather } from './weather';
+import { Forecast } from './forecast';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
   public address: string = "";
   public formdata: any;
   public weather!: Weather;
+  public forecasts!: Weather[];
   public condition!: string;
   public temp!: number;
   public description!: string;
@@ -47,8 +49,6 @@ export class AppComponent implements OnInit {
   //     address: new FormControl(""),
   //  });
  
-
- 
   }
 
   // get a simple message from backend
@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
 
   );
 }
+
 // // send cityname to backend and request a weather back
 //   public getWeather(address : string): void {
 //     this.weatherService.getWeather(address).subscribe(
@@ -74,18 +75,22 @@ export class AppComponent implements OnInit {
 //     );
 //   }
 
-
-// Button onclick event
-onclickSubmit(data: { address: string; }): void{
-  //invoke the get method
-  this.getWeather(data.address);
-}
-
 // send cityname to backend and request a weather back
 public getWeather(userAddress : string): void {
   this.weatherService.getWeather(userAddress).subscribe(
     (response: Weather) =>{
       this.weather = response;
+    },(error: HttpErrorResponse)=>{
+      alert(error.message)
+    }
+  );
+}
+
+public getForecast(userAddress : string): void {
+  this.weatherService.getForecast(userAddress).subscribe(
+    (response: Weather[]) =>{
+      this.forecasts = response;
+      console.log(response);
     },(error: HttpErrorResponse)=>{
       alert(error.message)
     }
