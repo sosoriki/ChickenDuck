@@ -22,6 +22,8 @@ public class Weather implements Serializable {
     private String condition;
     private String description;
 
+    private String formattedAddress;
+
     public Weather() {
     }
 
@@ -82,6 +84,14 @@ public class Weather implements Serializable {
         this.description = description;
     }
 
+    public String getFormattedAddress() {
+        return formattedAddress;
+    }
+
+    public void setFormattedAddress(String formattedAddress) {
+        this.formattedAddress = formattedAddress;
+    }
+
     @Override
     public String toString() {
         return "Weather{" +
@@ -92,6 +102,7 @@ public class Weather implements Serializable {
                 ", min_temp=" + min_temp +
                 ", condition='" + condition + '\'' +
                 ", description='" + description + '\'' +
+                ", formattedAddress='" + formattedAddress + '\'' +
                 '}';
     }
 }

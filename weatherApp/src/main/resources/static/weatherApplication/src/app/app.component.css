@@ -175,3 +175,9 @@
 	height: 10vw;
 	color: snow;
 }
+/* Google map UI */
+.full{
+	position: center;
+	width: 25vw;
+	height: 25vh;
+}

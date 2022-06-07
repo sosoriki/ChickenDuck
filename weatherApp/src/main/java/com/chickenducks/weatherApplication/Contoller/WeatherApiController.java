@@ -1,7 +1,7 @@
 package com.chickenducks.weatherApplication.Contoller;
 
 
-import com.chickenducks.weatherApplication.Model.Response;
+import com.chickenducks.weatherApplication.Model.WeatherResponse;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,10 +22,15 @@ public class WeatherApiController {
         return "test";
     }
 
+    /**
+     * @param lat latitude of the place
+     * @param lon longitude of the place
+     * @return a weather report of the place
+     */
     @RequestMapping("/getWeatherApi/lat={lat}&lon={lon}")
-    public Response getWeather(@PathVariable("lat") double lat, @PathVariable("lon") double lon) {
-        ResponseEntity<Response> response = new RestTemplate().
-                getForEntity("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY + "&units=imperial", Response.class);
+    public WeatherResponse getWeather(@PathVariable("lat") double lat, @PathVariable("lon") double lon) {
+        ResponseEntity<WeatherResponse> response = new RestTemplate().
+                getForEntity("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY + "&units=imperial", WeatherResponse.class);
 
         return response.getBody();
     }

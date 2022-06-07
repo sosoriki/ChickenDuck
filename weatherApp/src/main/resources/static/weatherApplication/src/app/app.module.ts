@@ -16,7 +16,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';//google plac
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

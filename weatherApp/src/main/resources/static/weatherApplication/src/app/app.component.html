@@ -1,9 +1,14 @@
+<<<<<<< Updated upstream
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+=======
+
+>>>>>>> Stashed changes
 <div class="container">
     <div class="header"><h1>Weather Channel</h1></div>
+  <input (keydown.enter)="save($event)" placeholder="Enter city name" ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" />
+  <div class="full" id="map"></div>
+  <div class="weather-output" *ngIf="receivedInput == true">
 
-  <input  placeholder="Enter city name" ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" />
-  <div class="weather-output" *ngIf="set == true">
     <!--<div *ngFor="let forecast of forecasts">
       <p>Date: {{ weather.date }}</p>
       <p>Latitude: {{ userLatitude }}</p>
@@ -20,91 +25,91 @@
     <p>Description: {{weather.description | titlecase}}</p>-->
       <div class="img-container">
         <div *ngIf="weather.condition == 'Clear'" class="clear-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Clouds'" class="cloud-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Thunderstorm'" class="ts-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Drizzle'" class="drizzle-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Rain'" class="rain-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Snow'" class="snow-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Mist'" class="mist-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Smoke'" class="smoke-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Haze'" class="haze-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Dust'" class="dust-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Fog'" class="fog-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Sand'" class="sand-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Ash'" class="ash-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Squail'" class="sq-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
         </div>
         <div *ngIf="weather.condition == 'Tornado'" class="tornado-container">
-          <p>Address: {{ userAddress }}</p>
+          <p>Address: {{ weather.formattedAddress }}</p>
           <p>Weather: {{ weather.condition }}</p>
           <p>Temperature: {{weather.temp}} F</p>
           <p>Description: {{weather.description | titlecase}}</p>
@@ -130,6 +135,6 @@
   </div>
 </div>
 
-
+<div class="full" id="map"></div>
 
 

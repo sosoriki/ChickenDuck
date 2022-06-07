@@ -7,6 +7,7 @@ export interface Weather{
     min_temp: number;
     condition: string;
     description: string;
-    icon: string;
+    
+    formattedAddress:string;
 
 }

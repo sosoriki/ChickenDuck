@@ -1,7 +1,7 @@
 package com.chickenducks.weatherApplication.Contoller;
 
-import com.chickenducks.weatherApplication.Model.GeocoderResponse;
-import com.chickenducks.weatherApplication.Model.Response;
+import com.chickenducks.weatherApplication.Model.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +21,11 @@ public class GeocoderApiController {
         return "service up";
     }
 
+
+    /**
+     * @param address place address
+     * @return  address,latitude,longitude of the place
+     */
     @GetMapping("/getLocation")
     public GeocoderResponse getGeoDetails(@RequestParam String address) {
         UriComponents uri = UriComponentsBuilder.newInstance()
@@ -30,13 +35,17 @@ public class GeocoderApiController {
                 .queryParam("key", APIKEY)
                 .queryParam("address", address)
                 .build();
-        System.out.println(uri.toUriString());
+        //System.out.println(uri.toUriString());
         ResponseEntity<GeocoderResponse> response = new RestTemplate().getForEntity(uri.toUriString(), GeocoderResponse.class);
         return response.getBody();
     }
 
+    /**
+     * @param address place address
+     * @return the coordinate,condition,temperature of the place
+     */
     @GetMapping("/getWeather")
-    public Response getWeather(@RequestParam String address) {
+    public WeatherResponse getWeather(@RequestParam String address) {
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host("maps.googleapis.com")
@@ -44,13 +53,16 @@ public class GeocoderApiController {
                 .queryParam("key", APIKEY)
                 .queryParam("address", address)
                 .build();
+        // Calling getlocation in GeocoderApiController, receiving GeocoderResponse
         ResponseEntity<GeocoderResponse> response = new RestTemplate().getForEntity(uri.toUriString(), GeocoderResponse.class);
-        GeocoderResponse coordinates = response.getBody();
-        double lat = coordinates.getResult()[0].getGeometry().getLocation().getLat();
-        double lon = coordinates.getResult()[0].getGeometry().getLocation().getLng();
+        GeocoderResponse geocoderResponse = response.getBody();
+        double lat = geocoderResponse.getResult()[0].getGeometry().getLocation().getLat();
+        double lon = geocoderResponse.getResult()[0].getGeometry().getLocation().getLng();
         System.out.println("This lat:" + lat + " " + lon);
-        ResponseEntity<Response> weather = new RestTemplate().getForEntity("http://localhost:8080/getWeatherApi/lat=" + lat + "&lon=" + lon, Response.class);
-        return weather.getBody();
+        // Calling getWeatherApi in WeatherApiController, receiving weatherResponse
+        ResponseEntity<WeatherResponse> weatherResponse = new RestTemplate().getForEntity("http://localhost:8080/getWeatherApi/lat=" + lat + "&lon=" + lon, WeatherResponse.class);
+        weatherResponse.getBody().setFormattedAddress(response.getBody().getResult()[0].getAddress());
+        return weatherResponse.getBody();
     }
 
 }
