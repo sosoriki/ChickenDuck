@@ -40,7 +40,8 @@ export class AppComponent implements OnInit {
     this.getWeather(this.userAddress);
     this.receivedInput=true;
     let loader = new Loader({
-      apiKey:'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI' 
+      //get API key from google doc and remember to remove when push
+      apiKey:'' 
     })
     loader.load().then(() =>{
       new google.maps.Map(document.getElementById("map")as HTMLElement,{
