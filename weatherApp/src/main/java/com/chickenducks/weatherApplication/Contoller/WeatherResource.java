@@ -44,6 +44,7 @@ public class WeatherResource {
         System.out.println(uri.toUriString());
         // calling /getweather interface in GeocodeApiController
         ResponseEntity<WeatherResponse> weatherResponse = new RestTemplate().getForEntity(uri.toUriString(), WeatherResponse.class);
+        System.out.println(weatherResponse.getBody().toString());
         Weather weather = weatherServiceImpl.weather(weatherResponse);
         System.out.println(weather.toString());
         return new ResponseEntity<Weather>(weather, HttpStatus.OK);

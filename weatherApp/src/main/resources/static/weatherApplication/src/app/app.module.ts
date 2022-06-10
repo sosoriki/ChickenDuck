@@ -9,7 +9,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';//google plac
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -17,6 +18,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';//google plac
     ReactiveFormsModule,
     FormsModule,
     GooglePlaceModule,
+    
 
   ],
   providers: [],

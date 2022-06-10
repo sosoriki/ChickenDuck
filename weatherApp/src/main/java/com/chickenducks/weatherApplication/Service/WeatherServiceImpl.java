@@ -23,6 +23,16 @@ public class WeatherServiceImpl implements WeatherService {
         weather.setCondition(weatherResponse.getBody().getCondition()[0].getMain());
         weather.setDescription(weatherResponse.getBody().getCondition()[0].getDescription());
         weather.setFormattedAddress(weatherResponse.getBody().getFormattedAddress());
+
+        weather.setDeg(weatherResponse.getBody().getWind().getDeg());
+        weather.setSpeed(weatherResponse.getBody().getWind().getSpeed());
+        weather.setHumidity(weatherResponse.getBody().getTemperature().getHumidity());
+        weather.setFeels_like(weatherResponse.getBody().getTemperature().getFeels_like());
+        weather.setPressure(weatherResponse.getBody().getTemperature().getPressure());
+        weather.setHumidity(weatherResponse.getBody().getTemperature().getHumidity());
+        weather.setIconUrl(weatherResponse.getBody().getCondition()[0].getIcon());  // not finish
+
+
         return weather;
 
     }

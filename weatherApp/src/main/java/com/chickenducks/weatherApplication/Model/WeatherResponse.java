@@ -1,6 +1,7 @@
 package com.chickenducks.weatherApplication.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import sun.security.provider.Sun;
 
 import java.util.Arrays;
 
@@ -13,6 +14,9 @@ public class WeatherResponse {
 
     @JsonProperty("main")
     private Temperature temperature;
+
+    private Wind wind;
+
 
     private String formattedAddress;
 
@@ -58,12 +62,21 @@ public class WeatherResponse {
         this.cod = cod;
     }
 
+    public Wind getWind() {
+        return wind;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
     @Override
     public String toString() {
         return "WeatherResponse{" +
                 "coordinate=" + coordinate +
                 ", condition=" + Arrays.toString(condition) +
                 ", temperature=" + temperature +
+                ", wind=" + wind +
                 ", formattedAddress='" + formattedAddress + '\'' +
                 ", cod='" + cod + '\'' +
                 '}';

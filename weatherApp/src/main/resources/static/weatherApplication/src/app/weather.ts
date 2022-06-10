@@ -7,7 +7,10 @@ export interface Weather{
     min_temp: number;
     condition: string;
     description: string;
-    
     formattedAddress:string;
-
+    
+    feels_like:string;
+    pressure:string;
+    humidity:string;
+    iconUrl:string;
 }

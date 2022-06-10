@@ -24,6 +24,15 @@ public class Weather implements Serializable {
 
     private String formattedAddress;
 
+    private double feels_like;
+    private double pressure;
+    private double humidity;
+    private String iconUrl;
+    private double speed;
+    private double deg;
+    private double gust;
+
+
     public Weather() {
     }
 
@@ -90,6 +99,62 @@ public class Weather implements Serializable {
 
     public void setFormattedAddress(String formattedAddress) {
         this.formattedAddress = formattedAddress;
+    }
+
+    public double getFeels_like() {
+        return feels_like;
+    }
+
+    public void setFeels_like(double feels_like) {
+        this.feels_like = feels_like;
+    }
+
+    public double getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(double pressure) {
+        this.pressure = pressure;
+    }
+
+    public double getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(double humidity) {
+        this.humidity = humidity;
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public double getDeg() {
+        return deg;
+    }
+
+    public void setDeg(double deg) {
+        this.deg = deg;
+    }
+
+    public double getGust() {
+        return gust;
+    }
+
+    public void setGust(double gust) {
+        this.gust = gust;
     }
 
     @Override

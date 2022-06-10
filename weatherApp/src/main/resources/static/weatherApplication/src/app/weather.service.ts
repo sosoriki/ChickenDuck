@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Weather } from './weather';
 import { Forecast } from './forecast';
 
+
 @Injectable({
     providedIn: 'root'
   })
