@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Weather } from './weather';
 import { Forecast } from './forecast';
+import { AuthenticationService } from './login/auth.service';
 
 
 @Injectable({
@@ -12,12 +13,14 @@ import { Forecast } from './forecast';
   export class WeatherService{
     // apiBaseUrl is defined in enviroment.ts
     private apiServerUrl = environment.apiBaseUrl;
-    constructor(private http: HttpClient) { }
-    // 
+    constructor(private http: HttpClient,
+      private authenticationService: AuthenticationService) { }
+    
     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         "Access-Control-Allow-Origin": "*",
+        'Authorization': `Basic ${window.btoa(this.authenticationService.username + ":" + this.authenticationService.password)}`
       } )
     };
 
@@ -29,11 +32,11 @@ import { Forecast } from './forecast';
       
     // request a weather from backend, address can be either{cityname,state} or {cityname}.
     public getWeather(address : string): Observable<Weather>{
-      return this.http.get<Weather>(`${this.apiServerUrl}/getWeather/location/${address}`,this.httpOptions)
+      return this.http.get<Weather>(`${this.apiServerUrl}/getWeather/location/${address}`)
     }
 
     public getForecast(address : string): Observable<Forecast[]>{
-      return this.http.get<Forecast[]>(`${this.apiServerUrl}/getForecast/location/${address}`,this.httpOptions)
+      return this.http.get<Forecast[]>(`${this.apiServerUrl}/getForecast/location/${address}`)
     }
 
 

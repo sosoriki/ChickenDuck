@@ -1,23 +1,23 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from './weather.service';
+import { WeatherService } from '../weather.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Weather } from './weather';
+import { Weather } from '../weather';
 import { Loader } from '@googlemaps/js-api-loader';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from './login/auth.service';
-import { User } from './user';
+import { AuthenticationService } from '../login/auth.service';
+import { User } from '../user';
 
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'weather-app',
+  templateUrl: './weather-app.component.html',
+  styleUrls: ['../app.component.css'],
   
 })
 
-export class AppComponent implements OnInit {
+export class WeatherAppComponent implements OnInit {
   //If we dont want to initialize a variable:
   //1)! postfix operator to the variable name can used to ingore initialization
   //2)or we can go to tsconfig.json set "strictPropertyInitialization": false 
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
 
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey:'' 
+      apiKey:'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI' 
     })
     //add google map
     loader.load().then(() =>{
@@ -83,31 +83,7 @@ export class AppComponent implements OnInit {
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
   ngOnInit(): void{
-    //load init data to page
-    // this.getWeather("boston,ma");
     
-    let loader = new Loader({
-      //get API key from google doc and remember to remove when push
-      apiKey:'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI' 
-    })
-    //add google map
-    loader.load().then(() =>{
-
-      const map = new google.maps.Map(document.getElementById("map")as HTMLElement,{
-      center:  {lat: parseFloat(this.userLatitude), lng : parseFloat(this.userLongitude)},
-      zoom:8,
-
-      // add google map marker
-      });
-      new google.maps.Marker({
-        position: {lat: parseFloat(this.userLatitude), lng : parseFloat(this.userLongitude)},
-        map,
-        title: "Hello World!",
-        icon: "",
-      });
-    
-
-    })
 
   }
 
@@ -123,19 +99,9 @@ export class AppComponent implements OnInit {
 
   );
 }
-// // send cityname to backend and request a weather back
-//   public getWeather(address : string): void {
-//     this.weatherService.getWeather(address).subscribe(
-//       (response: Weather) =>{
-//         this.weather = response;
-//       },(error: HttpErrorResponse)=>{
-//         alert(error.message)
-//       }
-//     );
-//   }
 
 
-// 
+ 
 getConditionImg(weather:Weather):void{
   if(this.weather.condition=='Clouds')this.conditionUrl="https://pbs.twimg.com/media/ETtjLCrVAAYPFqv.jpg";
   if(this.weather.condition=='Clear') this.conditionUrl="https://thumbs.dreamstime.com/b/blue-sky-white-clouds-day-as-panorama-header-blue-sky-white-clouds-as-header-143601619.jpg";

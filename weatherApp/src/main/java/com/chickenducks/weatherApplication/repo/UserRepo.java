@@ -5,9 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.chickenducks.weatherApplication.Model.User;
 
-@Repository
+
+//probably won't need
+
+//@Repository
 public interface UserRepo extends JpaRepository<User, String>{
 
-	User findByUsername(String username);
+//	User findByUsername(String username);
 
 }
