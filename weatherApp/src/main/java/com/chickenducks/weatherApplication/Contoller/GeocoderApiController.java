@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class GeocoderApiController {
 
     //get API key from google doc and remember to remove when push
-    private static final String APIKEY = "AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI";
+    private static final String APIKEY = "";
 
     @GetMapping("/test")
     public String test() {

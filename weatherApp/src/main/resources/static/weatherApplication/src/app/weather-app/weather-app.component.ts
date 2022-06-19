@@ -54,7 +54,7 @@ export class WeatherAppComponent implements OnInit {
 
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey:'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI' 
+      apiKey:'' 
     })
     //add google map
     loader.load().then(() =>{
