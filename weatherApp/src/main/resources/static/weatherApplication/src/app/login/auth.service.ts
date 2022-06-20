@@ -13,7 +13,6 @@ export class AuthenticationService {
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
   AUTH_TOKEN : string = 'authenticatedToken';
 
-
   public username: String | null= "";
   public password: String | null= "";
   
@@ -21,7 +20,6 @@ export class AuthenticationService {
 
   }
 
- 
   authenticationService(username: String, password: String) {
     return this.http.get(`http://localhost:8080/api/v1/basicauth`,
       { headers: { Authorization: this.createBasicAuthToken(username, password) } }).pipe(map((res:any) => {
@@ -61,7 +59,7 @@ createAuthoTokenNoHeader(username: String, password: String){
   }
 
   getLoggedInUserName() {
-    let user = sessionStorage.getItem(this.AUTH_TOKEN)
+    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
     if (user === null) return ''
     return user
   }

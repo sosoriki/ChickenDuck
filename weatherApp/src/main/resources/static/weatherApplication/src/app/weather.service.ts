@@ -39,10 +39,7 @@ import { AuthenticationService } from './login/auth.service';
     public getForecast(address : string): Observable<Forecast[]>{
       return this.http.get<Forecast[]>(`${this.apiServerUrl}/getForecast/location/${address}`)
     }
-    public getlatlngtest(lat:string, lng:string) : Observable<Weather>{
-      return this.http.get<Weather>(`${this.apiServerUrl}/getWeatherApi/lat=${lat}&lon=${lng}`)
-    }
-     
+
 
     
 

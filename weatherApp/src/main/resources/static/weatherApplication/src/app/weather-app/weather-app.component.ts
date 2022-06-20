@@ -1,16 +1,24 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Weather } from '../weather';
 import { Loader } from '@googlemaps/js-api-loader';
-@Component({
-  selector: 'app-weather-application',
-  templateUrl: './weather-application.component.html',
-  styleUrls: ['./weather-application.component.css']
-})
-export class WeatherApplicationComponent implements OnInit {
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../login/auth.service';
+import { User } from '../user';
 
- //If we dont want to initialize a variable:
+
+
+@Component({
+  selector: 'weather-app',
+  templateUrl: './weather-app.component.html',
+  styleUrls: ['../app.component.css'],
+  
+})
+
+export class WeatherAppComponent implements OnInit {
+  //If we dont want to initialize a variable:
   //1)! postfix operator to the variable name can used to ingore initialization
   //2)or we can go to tsconfig.json set "strictPropertyInitialization": false 
   public message: string = "";
@@ -22,56 +30,63 @@ export class WeatherApplicationComponent implements OnInit {
   public temp!: number;
   public description!: string;
   public receivedInput:boolean = false;
-  public conditionUrl:string ="";
+  public conditionUrl:string ="xx";
   public receivedUrl:boolean=false;
   //goolge place api autocomplete
   title = 'google-places-autocomplete';
-  userAddress: string = "";
-  userLatitude!: number;
-  userLongitude!: number;
-  teston!:boolean;
-  hasResult:boolean = false;
+  userAddress: string = ''
+  userLatitude: string = ''
+  userLongitude: string = ''
+  //login stuff
+  model: any = {};
+  sessionId: any = "";
+  
+
 
    handleAddressChange = async (address: any) =>  {
-    this.hasResult = true;
+    
     this.userAddress = address.formatted_address
     this.userLatitude = address.geometry.location.lat()
     this.userLongitude = address.geometry.location.lng()
     this.getWeather(this.userAddress);
     
+   
+
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey:'' 
+      apiKey:'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI' 
     })
     //add google map
     loader.load().then(() =>{
+
       const map = new google.maps.Map(document.getElementById("map")as HTMLElement,{
-      center:  {lat: this.userLatitude, lng : this.userLongitude},
-      zoom:11,
+      center:  {lat: parseFloat(this.userLatitude), lng : parseFloat(this.userLongitude)},
+      zoom:8,
 
       // add google map marker
       });
       new google.maps.Marker({
-        position: {lat: this.userLatitude, lng :this.userLongitude},
+        position: {lat: parseFloat(this.userLatitude), lng : parseFloat(this.userLongitude)},
         map,
-        title: "Location",
+        title: "Hello World!",
         icon: "",
       });
+    
+
     })
   }
 
   constructor(private weatherService: WeatherService) {
     
-
+    
    }
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
-   ngOnInit()  {
-     this.getWeather("1600 Amphitheatre Parkway Mountain View, CA 94043");
-     
+  ngOnInit(): void{
+    
 
   }
- 
+
   // get a simple message from backend
   public getMessage(): void {
     this.weatherService.getMessage().subscribe(
@@ -84,6 +99,9 @@ export class WeatherApplicationComponent implements OnInit {
 
   );
 }
+
+
+ 
 getConditionImg(weather:Weather):void{
   if(this.weather.condition=='Clouds')this.conditionUrl="https://pbs.twimg.com/media/ETtjLCrVAAYPFqv.jpg";
   if(this.weather.condition=='Clear') this.conditionUrl="https://thumbs.dreamstime.com/b/blue-sky-white-clouds-day-as-panorama-header-blue-sky-white-clouds-as-header-143601619.jpg";
@@ -102,39 +120,15 @@ getConditionImg(weather:Weather):void{
   if(this.weather.condition=='Tornado') this.conditionUrl="https://img.freepik.com/free-vector/cartoon-tornado-character-storm-whirlwind-twister-cyclone-hurricane-isolated-vector-funny-cute-tornado-wind-typhoon-cloud-emoji-with-face-smile-kids-cartoon-comic-weather-character_8071-10806.jpg?w=2000";
   }
 save(event:any) {
-
   this.getWeather(event.target.value);
   this.receivedInput=true;
   console.log("You entered: ", event.target.value);
-  this.userLatitude = this.weather.latitude;
-  this.userLongitude = this.weather.longitude; 
-  let loader = new Loader({
-    //get API key from google doc and remember to remove when push
-    apiKey:'' 
-  })
-  //add google map
-  loader.load().then(() =>{
-    const map = new google.maps.Map(document.getElementById("map")as HTMLElement,{
-    center:  {lat: this.userLatitude, lng : this.userLongitude},
-    zoom:11,
-
-    // add google map marker
-    });
-    new google.maps.Marker({
-      position: {lat: this.userLatitude, lng :this.userLongitude},
-      map,
-      title: "Location",
-      icon: "",
-    });
-  
-  })
 }
 // send cityname to backend and request a weather back
 public getWeather(userAddress : string): void {
   this.weatherService.getWeather(userAddress).subscribe(
     (response: Weather) =>{
       this.weather = response;
-      // console.log(this.weather);
       this.getConditionImg(this.weather);
     },(error: HttpErrorResponse)=>{
       alert(error.message)
@@ -142,5 +136,7 @@ public getWeather(userAddress : string): void {
   );
 }
 
-
 }
+
+
+
