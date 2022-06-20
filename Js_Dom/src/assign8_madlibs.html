@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="assign8.css">
+    <script src = "./assign8.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<main>
+    <title>“Chuyang's Crazy Mad Libs Story!”</title>
+  <form id="form" onsubmit="submitMadLibs(event)">
+      <label> Name: </label>
+      <input type = "text" id = "name" name = "name" value="Superman"> <br>
+      <label> Character: </label>
+      <input type = "text"  id = "object" name = "object" value="Batman"><br>
+      <label> Adjective: </label>
+      <input type = "text"  id = "adjective" name = "adjective" value="mean"><br>
+      <label> Adverb: </label>
+      <input type = "text"  id = "adverb" name = "adverb" value="quickly" ><br>
+      <button type = "submit"> Tell a story </button>
+      <section id = "completed-story" class></section>
+  </form>
+
+    <div>
+
+    </div>
+</main>
+</body>
+</html>
