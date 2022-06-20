@@ -1,7 +1,6 @@
-package com.chickenducks.weatherApplication.Contoller;
+package com.chickenducks.weatherApplication.Controller;
 
 import com.chickenducks.weatherApplication.Model.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class GeocoderApiController {
 
     //get API key from google doc and remember to remove when push
-    private static final String APIKEY = "AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI";
+    private static final String APIKEY = "";
 
     @GetMapping("/test")
     public String test() {

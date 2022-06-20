@@ -13,4 +13,9 @@ export interface Weather{
     pressure:string;
     humidity:string;
     iconUrl:string;
+    speed:number;
+    deg:number;
+    gust:number;
+
+
 }

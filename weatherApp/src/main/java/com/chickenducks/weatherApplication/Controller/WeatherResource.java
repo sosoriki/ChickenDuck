@@ -17,7 +17,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class WeatherResource {
     private final WeatherService weatherServiceImpl;
-
     @Autowired
     public WeatherResource(WeatherService weatherService) {
         weatherServiceImpl = weatherService;

@@ -1,4 +1,4 @@
-package com.chickenducks.weatherApplication.Contoller;
+package com.chickenducks.weatherApplication.Controller;
 
 
 import com.chickenducks.weatherApplication.Model.WeatherResponse;
@@ -15,7 +15,7 @@ public class WeatherApiController {
 
 
     //get API key from google doc and remember to remove when push
-    private static final String APIKEY = "9846d9ed0f08a27e943b6150269d6330";
+    private static final String APIKEY = "";
 
     @RequestMapping("/testing")
     public String testing() {

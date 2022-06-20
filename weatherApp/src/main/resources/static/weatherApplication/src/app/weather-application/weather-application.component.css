@@ -1,0 +1,250 @@
+.test-b{
+	background-color: black;
+}
+.test-r{
+	background-color: red;
+}
+
+.bg-1{
+	background-color: white;
+	opacity: .8;
+	border-radius: 30px;
+}
+.input-lg{
+	padding: 5px;
+	font-size: 150%;
+	border-radius: 10px;
+	border-color: black;
+	border-width: 5px;
+	border-style: solid;
+}
+.weather-card{
+	  background-repeat: no-repeat;
+	  background-position: bottom;
+	  background-size: cover;
+	  border-width: 5px;
+
+}
+.weather-card p{
+	  color:white;
+	  text-shadow: 2px 12px 4px black;
+	  padding: 10px;
+	  font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif";
+	  line-height: 1.5;
+	  font-size: 150%;
+	  -webkit-text-size-adjust: 100%;
+}
+
+.weather-output{
+	  border-radius: 20px;
+	  border-color: rgb(0, 0, 0);
+	  border-width: 5px;
+	  border-style: solid;
+	
+}
+  
+body{
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  }
+
+
+.header{
+	padding: 50px;
+	text-shadow: 3px 3px 10px white;
+}
+h1{
+	color:white;
+	text-shadow: 2px 12px 4px black;
+	padding: 10px;
+	font-size: 500%;
+}
+.shadow{
+	text-shadow: 2px 2px 4px black;
+	padding: 5px;
+	font-size: 200%;
+	background-color: black;
+	color: aliceblue;
+	/* display: inline-block; */
+	text-align: center;
+}
+
+.full{
+	margin: 0 auto; 
+	width: 25vw;
+	height: 25vh;
+	border-radius: 20px;
+}
+/* .container{
+	text-align: center;
+	background-image: url("https://media.istockphoto.com/vectors/blue-sky-and-clouds-seamless-vector-background-vector-id1163292935?k=20&m=1163292935&s=612x612&w=0&h=UkJc7uklb677HRh_Mn-5mrFM1cy4u8xJUxiYl4540eQ=");
+	
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* background-color: deepskyblue; */
+	/* width: 100rem;
+	height: 80rem; */
+	/* width: 100vw;
+	height: 55vw; */
+    /* margin: 0px auto;
+    padding: 0px;
+    position: center;
+} */ 
+/* .weather-output{
+	padding: 1vw;
+	font-weight: bold;
+	height: 10vw;
+	position: center;
+} */
+
+/* .img-container{
+	height: 50vh;
+	width: 65vw;
+	margin: 0 auto;
+	position: center;
+} */
+
+/* .img-container p{
+	position: relative;
+	left: 7px;
+	text-align: left;
+	margin: .5em 0;
+	height: 2vw;
+	font-size: 1.2vw;
+}
+
+.clear-container{
+	background-image: url("https://thumbs.dreamstime.com/b/blue-sky-white-clouds-day-as-panorama-header-blue-sky-white-clouds-as-header-143601619.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.cloud-container{
+	background-image: url("https://pbs.twimg.com/media/ETtjLCrVAAYPFqv.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.ts-container{
+	background-image: url("https://secureservercdn.net/50.62.172.157/56c.31d.myftpupload.com/wp-content/uploads/2017/02/Lightning-Strike-Header.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.drizzle-container{
+	background-image: url("https://idsystems.co.uk/wp-content/uploads/2019/06/blog-weather-ratings-header.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.rain-container{
+	background-image: url("https://64.media.tumblr.com/bbb4d12602d2e3cd8833af7e716d5314/tumblr_o146rlScU31ugg5t0o3_1280.png");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.snow-container{
+	background-image: url("https://vvfrc.org/wp-content/uploads/2019/10/gala-winter-wonderland-2019-header.png");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: black;
+}
+
+.mist-container{
+	background-image: url("https://image.shutterstock.com/image-photo/kartepe-literally-snowy-hill-referring-260nw-1672332679.jpg");
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.smoke-container{
+	background-image: url("https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/07/Tamarack_Fire_1296x728-header-1-1296x729.jpg?w=1155&h=2268");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.haze-container{
+	background-image: url("https://www.powerbulbs.com/uploads/images/blog_images/PB-Weather-Woes-Fog-Blog-Post-Header.png");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.dust-container{
+	background-image: url("https://static.stacker.com/s3fs-public/styles/sar_screen_maximum_large/s3/2022-03/haboob-dust-storm_0.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.fog-container{
+	background-image: url("https://images.dailyhive.com/20220530095951/fog-coquihalla-500x258.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.sand-container{
+	background-image: url("https://cronkitenews.azpbs.org/wp-content/uploads/2019/08/haboob-header-800.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.ash-container{
+	background-image: url("https://news4sanantonio.com/resources/media2/16x9/full/1015/center/80/0b1c5d4b-aa76-42f0-8094-be9228419f2b-large16x9_ds.PNG");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.sq-container{
+	background-image: url("https://cdn.boatinternational.com/convert/bi_prd/bi/library_images/YbWGcspTje2o871l58qV_Wild-Weather-LUS-8.jpg/r%5Bwidth%5D=1920/YbWGcspTje2o871l58qV_Wild-Weather-LUS-8.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+}
+
+.tornado-container{
+	background-image: url("https://www.cdc.gov/disasters/tornadoes/images/tornadoes-header-image-1100x370-1.jpg?_=78043");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: cover;
+	height: 10vw;
+	color: snow;
+} */
+/* Google map UI */

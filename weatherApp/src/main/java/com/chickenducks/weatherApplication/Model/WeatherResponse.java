@@ -1,7 +1,7 @@
 package com.chickenducks.weatherApplication.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import sun.security.provider.Sun;
+
 
 import java.util.Arrays;
 
