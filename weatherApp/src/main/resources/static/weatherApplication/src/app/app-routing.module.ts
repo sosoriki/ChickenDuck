@@ -8,7 +8,8 @@ import { WeatherApplicationComponent } from './weather-application/weather-appli
 
 const routes: Routes = [
   {path: '',  component: LoginComponent},
-  {path:'main',component:WeatherApplicationComponent,}
+  {path:'main',component: WeatherApplicationComponent},
+  {path: 'logout', component: LoginComponent}
   ];
  
 

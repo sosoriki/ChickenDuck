@@ -49,7 +49,7 @@ createAuthoTokenNoHeader(username: String, password: String){
     sessionStorage.removeItem(this.AUTH_TOKEN)
     this.username = null;
     this.password = null;
-   
+    
   }
 
   isUserLoggedIn() {

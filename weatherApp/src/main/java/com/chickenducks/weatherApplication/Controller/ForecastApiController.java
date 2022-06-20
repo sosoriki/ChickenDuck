@@ -1,4 +1,4 @@
-package com.chickenducks.weatherApplication.Contoller;
+package com.chickenducks.weatherApplication.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

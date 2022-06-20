@@ -67,8 +67,29 @@ export class WeatherApplicationComponent implements OnInit {
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
    ngOnInit()  {
-     this.getWeather("1600 Amphitheatre Parkway Mountain View, CA 94043");
-     
+    //  this.getWeather("1600 Amphitheatre Parkway Mountain View, CA 94043");
+    this.getWeather("5001 Statesman Dr, Irving, TX 75063");
+
+
+    let loader = new Loader({
+      //get API key from google doc and remember to remove when push
+      apiKey:'' 
+    })
+    //add google map
+    loader.load().then(() =>{
+      const map = new google.maps.Map(document.getElementById("map")as HTMLElement,{
+      center:  {lat: 32.93619290000001, lng: -97.0151767},
+      zoom:11,
+
+      // add google map marker
+      });
+      new google.maps.Marker({
+        position: {lat: 32.93619290000001, lng: -97.0151767},
+        map,
+        title: "Location",
+        icon: "",
+      });
+    })
 
   }
  
@@ -110,7 +131,7 @@ save(event:any) {
   this.userLongitude = this.weather.longitude; 
   let loader = new Loader({
     //get API key from google doc and remember to remove when push
-    apiKey:'' 
+    apiKey:'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI' 
   })
   //add google map
   loader.load().then(() =>{
@@ -140,6 +161,10 @@ public getWeather(userAddress : string): void {
       alert(error.message)
     }
   );
+}
+
+public convertToC(temp: any){
+  return ((temp - 32) * (5/9)).toFixed(2);
 }
 
 
