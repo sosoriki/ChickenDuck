@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   successMessage!: string;
   invalidLogin = false;
   loginSuccess = false;
-
+  showErrorMessage = false;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
       console.log("Success");
     }, (error) => {
      console.log("Failed");
+     this.showErrorMessage = true
     }); 
   }
 

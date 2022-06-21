@@ -22,7 +22,6 @@ public class Weather implements Serializable {
     private String condition;
     private String description;
 
-    private String formattedAddress;
 
     private double feels_like;
     private double pressure;
@@ -93,14 +92,6 @@ public class Weather implements Serializable {
         this.description = description;
     }
 
-    public String getFormattedAddress() {
-        return formattedAddress;
-    }
-
-    public void setFormattedAddress(String formattedAddress) {
-        this.formattedAddress = formattedAddress;
-    }
-
     public double getFeels_like() {
         return feels_like;
     }
@@ -167,7 +158,13 @@ public class Weather implements Serializable {
                 ", min_temp=" + min_temp +
                 ", condition='" + condition + '\'' +
                 ", description='" + description + '\'' +
-                ", formattedAddress='" + formattedAddress + '\'' +
+                ", feels_like=" + feels_like +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                ", iconUrl='" + iconUrl + '\'' +
+                ", speed=" + speed +
+                ", deg=" + deg +
+                ", gust=" + gust +
                 '}';
     }
 }

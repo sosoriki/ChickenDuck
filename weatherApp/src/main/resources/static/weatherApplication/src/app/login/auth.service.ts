@@ -35,7 +35,6 @@ export class AuthenticationService {
     return 'Basic ' + window.btoa(username + ":" + password)
   }
 createAuthoTokenNoHeader(username: String, password: String){
-
   return  window.btoa(username + ":" + password);
 }
 

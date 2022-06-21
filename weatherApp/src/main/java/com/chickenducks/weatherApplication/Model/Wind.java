@@ -1,9 +1,10 @@
 package com.chickenducks.weatherApplication.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class Wind {
         private double speed;
         private double deg;
-        private double gust;
 
     public double getSpeed() {
         return speed;
@@ -21,11 +22,4 @@ public class Wind {
         this.deg = deg;
     }
 
-    public double getGust() {
-        return gust;
-    }
-
-    public void setGust(double gust) {
-        this.gust = gust;
-    }
 }

@@ -1,83 +1,11 @@
-<!--<<<<<<< HEAD-->
-<!--<!DOCTYPE html>-->
-<!--=======-->
-<!--&lt;!&ndash; <!DOCTYPE html>-->
-<!--&gt;>>>>>> 65967a224cdf498ee247a031248a40ecffc63c86-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<<<<<<< HEAD-->
-<!--<p1>I am  a spring bean</p1>-->
-<!--</body>-->
-<!--</html>-->
-<!--=======-->
-<!--<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>-->
-<!--<form th:action="@{/logout}" method="post">-->
-<!--    <input type="submit" value="Logout" />-->
-<!--</form>-->
-<!--</body>-->
-<!--</html> &ndash;&gt;-->
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="utf-8"/>-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
-<!--    <title>Demo</title>-->
-<!--    <meta name="description" content=""/>-->
-<!--    <meta name="viewport" content="width=device-width"/>-->
-<!--    <base href="/"/>-->
-<!--    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>-->
-<!--    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>-->
-<!--    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>-->
-<!--    <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>-->
-<!--    <script type="text/javascript">-->
-<!--        $.get("/user", function(data) {-->
-<!--            $("#user").html(data.name);-->
-<!--            $(".unauthenticated").hide()-->
-<!--            $(".authenticated").show()-->
-<!--        });-->
-<!--    var logout = function() {-->
-<!--        $.post("/logout", function() {-->
-<!--        $("#user").html('');-->
-<!--        $(".unauthenticated").show();-->
-<!--        $(".authenticated").hide();-->
-<!--        })-->
-<!--    return true;-->
-<!--    }-->
-<!--    $.ajaxSetup({-->
-<!--  beforeSend : function(xhr, settings) {-->
-<!--    if (settings.type == 'POST' || settings.type == 'PUT'-->
-<!--        || settings.type == 'DELETE') {-->
-<!--      if (!(/^http:.*/.test(settings.url) || /^https:.*/-->
-<!--        .test(settings.url))) {-->
-<!--        // Only send the token to relative URLs i.e. locally.-->
-<!--        xhr.setRequestHeader("X-XSRF-TOKEN",-->
-<!--          Cookies.get('XSRF-TOKEN'));-->
-<!--      }-->
-<!--    }-->
-<!--  }-->
-<!--});-->
-<!--    </script>-->
-<!--</head>-->
-<!--<body>-->
-<!--	<h1>Demo</h1>-->
-<!--    <div class="container unauthenticated">-->
-<!--        With GitHub: <a href="/oauth2/authorization/github">click here</a>-->
-<!--    </div>-->
-<!--    <div class="container authenticated" style="display:none">-->
-<!--        &lt;!&ndash; Logged in as: <span id="user"></span>-->
-<!--    <div>-->
-<!--        <button onClick="logout()" class="btn btn-primary">Logout</button>-->
-<!--    </div> &ndash;&gt;-->
-<!--    <app-root></app-root>-->
-<!--    </div>-->
-<!--	<div class="container"></div>-->
-<!--</body>-->
-<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:inline="text">Welcome</h3>
 
-
-
-<!--&gt;>>>>>> 65967a224cdf498ee247a031248a40ecffc63c86-->
+</body>
+</html>

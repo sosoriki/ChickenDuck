@@ -17,13 +17,5 @@ public class BasicAuthController {
 
         return new AuthenticationBean("You are authenticated");
     }
-//    private static final String template = "Hello, %s!";
-//    private final AtomicLong counter = new AtomicLong();
 
-//    @RequestMapping("/greeting")
-//    public String greeting() {
-//
-//        //return new Greeting(counter.incrementAndGet(), String.format(template, name));
-//        return "Hello,greeting";
-//    }
 }

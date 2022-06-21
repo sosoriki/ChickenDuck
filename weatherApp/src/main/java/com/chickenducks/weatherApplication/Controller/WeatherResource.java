@@ -28,15 +28,9 @@ public class WeatherResource {
     public WeatherResource(WeatherService weatherService) {
         weatherServiceImpl = weatherService;
     }
-    
     private static final String GEOCODEAPIKEY = "";
     private static final String WEATHERAPIKEY = "";
-    
-    @GetMapping("/getMessage")
-    public ResponseEntity<String> getMessage() {
-        return new ResponseEntity<String>("Hello my friend, it is raining..", HttpStatus.OK);
-        //return  ResponseEntity.ok("Hello my friend, it is raining..");
-    }
+
 
     /**
      * All-in-One controller
@@ -61,8 +55,10 @@ public class WeatherResource {
         System.out.println("This lat:" + lat + " " + lon);
         ResponseEntity<WeatherResponse> weatherResponse = new RestTemplate().
                 getForEntity("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + WEATHERAPIKEY + "&units=imperial", WeatherResponse.class);
-        weatherResponse.getBody().setFormattedAddress(response.getBody().getResult()[0].getAddress());
+        System.out.println(weatherResponse.toString());
+
         Weather weather = weatherServiceImpl.weather(weatherResponse);
+        System.out.println(weather);
         return new ResponseEntity<Weather>(weather, HttpStatus.OK);
     }
     

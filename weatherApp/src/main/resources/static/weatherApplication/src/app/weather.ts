@@ -15,7 +15,7 @@ export interface Weather{
     iconUrl:string;
     speed:number;
     deg:number;
-    gust:number;
+
 
 
 }
