@@ -47,7 +47,12 @@ export class LoginComponent implements OnInit {
     }, (error) => {
      console.log("Failed");
     }); 
-  } 
+  }
+
+  register(){
+    this.router.navigate(['/register']);
+  }
+
   //  onSubmit():void{
   //   console.log("button works");
   //   console.log("username is: ",this.loginForm.value.username);

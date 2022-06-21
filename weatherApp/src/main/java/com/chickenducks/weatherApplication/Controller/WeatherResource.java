@@ -1,14 +1,20 @@
 package com.chickenducks.weatherApplication.Controller;
 
 import com.chickenducks.weatherApplication.Model.GeocoderResponse;
+import com.chickenducks.weatherApplication.Model.User;
 import com.chickenducks.weatherApplication.Model.WeatherResponse;
 import com.chickenducks.weatherApplication.Model.Weather;
 import com.chickenducks.weatherApplication.Service.WeatherService;
+import com.chickenducks.weatherApplication.repo.UserRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
@@ -17,12 +23,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class WeatherResource {
     private final WeatherService weatherServiceImpl;
+    
     @Autowired
     public WeatherResource(WeatherService weatherService) {
         weatherServiceImpl = weatherService;
     }
+    
     private static final String GEOCODEAPIKEY = "";
     private static final String WEATHERAPIKEY = "";
+    
     @GetMapping("/getMessage")
     public ResponseEntity<String> getMessage() {
         return new ResponseEntity<String>("Hello my friend, it is raining..", HttpStatus.OK);
@@ -55,6 +64,20 @@ public class WeatherResource {
         weatherResponse.getBody().setFormattedAddress(response.getBody().getResult()[0].getAddress());
         Weather weather = weatherServiceImpl.weather(weatherResponse);
         return new ResponseEntity<Weather>(weather, HttpStatus.OK);
+    }
+    
+    private UserRepo repo;
+	
+	@PostMapping("/registerUser")
+    public String registerUser(@RequestBody User user) {
+		System.out.println(user.getUsername());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+         
+        repo.save(user);
+         
+        return "register_success";
     }
 
 

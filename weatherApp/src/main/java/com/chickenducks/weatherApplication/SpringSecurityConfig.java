@@ -10,9 +10,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.chickenducks.weatherApplication.Model.User;
+import com.chickenducks.weatherApplication.repo.UserRepo;
 
 import java.util.Arrays;
 
@@ -50,15 +56,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
 
-//	@Autowired
-//	private DataSource dataSource;
-//	
-//	@Autowired
-//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
-//		auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-//			.dataSource(dataSource)
-//			.usersByUsernameQuery("select username, password, enabled from users where username=?")
-//			.authoritiesByUsernameQuery("select username, users.role from users where username=?");
-//	}
+	@Autowired
+	private DataSource dataSource;
+	
+	@Autowired
+	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+		auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+			.dataSource(dataSource)
+			.usersByUsernameQuery("select username, password, enabled from users where username=?")
+			.authoritiesByUsernameQuery("select username, users.role from users where username=?");
+	}
 	
 }

@@ -11,6 +11,7 @@ import { HttpInterceptorService } from './HttpInterceptorService';
 import { MenuComponent } from './menu/menu.component';
 import { WeatherApplicationComponent } from './weather-application/weather-application.component';
 import { LogoutComponent } from './logout/logout.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LogoutComponent } from './logout/logout.component';
     MenuComponent,
     WeatherApplicationComponent,
     LogoutComponent,
+    RegisterComponent,
    
 
   ],

@@ -1,0 +1,27 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="navbar-brand">Weather App</a>
+        </div>
+        <ul class="navbar-nav navbar-collapse justify-content-end"></ul>
+    </nav>
+</header>
+
+<form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+    <label>
+        Username: <input type="text" formControlName="username" placeholder="Enter Username" required>
+    </label>
+    <div *ngIf="submitted && username?.errors?.['required']" style="color:red">
+        Username required.
+    </div>
+    <label>
+        Password: <input type="password" formControlName="password" placeholder="Enter Password" minlength="6">
+    </label>
+    <div *ngIf="submitted && password?.errors?.['required']" style="color:red">
+        Password required.
+    </div>
+    <div *ngIf="submitted && password?.errors?.['minlength']" style="color:red">
+        Password must be 6 characters long.
+    </div>
+      <button type="submit">Register</button>
+</form>
