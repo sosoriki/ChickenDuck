@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,7 +20,12 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     public register: RegisterService
-  ) { }
+  ) { 
+    this.user = {
+      username:'',
+      password:''
+    };
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -48,14 +53,16 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.invalid){
       return;
     }
-    this.user = new User(this.registerForm.value.username, this.registerForm.value.password);
+    this.user.username = this.registerForm.value.username;
+    this.user.password = this.registerForm.value.password;
     this.register.registerUser(this.user).subscribe(result => {
       this.loading = true;
       alert("User registered. Please Log in.");
       this.router.navigate(['']);
       console.log("Successful register");
-    }, (error) => {
+    }, (error: HttpErrorResponse) => {
       console.log("Failed register");
+      alert(error.message);
     })
   }
 

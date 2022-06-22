@@ -62,18 +62,25 @@ public class WeatherResource {
         return new ResponseEntity<Weather>(weather, HttpStatus.OK);
     }
     
+    @Autowired
     private UserRepo repo;
 	
 	@PostMapping("/registerUser")
-    public String registerUser(@RequestBody User user) {
-		System.out.println(user.getUsername());
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+		User newUser = new User();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(encodedPassword);
+        
+        System.out.println(newUser.getUsername());
+        System.out.println(newUser.getPassword());
+        System.out.println(newUser.getUser_id());
+        System.out.println(newUser.getEnabled());
+        
+        repo.save(newUser);
          
-        repo.save(user);
-         
-        return "register_success";
+        return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 
 

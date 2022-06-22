@@ -12,10 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { WeatherApplicationComponent } from './weather-application/weather-application.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md'; //for css
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';//for css
-import {MatNativeDateModule} from '@angular/material/core';//for css
-import {MatButtonToggleModule} from '@angular/material/button-toggle';//for css
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // npm i mdb-angular-ui-kit
 // npm install angular-bootstrap-md --save
@@ -39,10 +36,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';//for css
     FormsModule,
     GooglePlaceModule,
     AppRoutingModule,
-    MDBBootstrapModule,
-    NoopAnimationsModule,
-    MatNativeDateModule,
-    MatButtonToggleModule
+    MDBBootstrapModule
  
     
   ],

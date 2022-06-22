@@ -29,7 +29,7 @@
       <form class="text-center    p-5   login-card justify-content-center " [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <p class="h4 mb-4">Sign in</p>
         <div *ngIf="showErrorMessage">
-          <h3 style="color: red;">Invalid username and password Please try again</h3>
+          <h3 style="color: red;">Invalid username and password. Please try again</h3>
         </div>
         <!-- Username -->
         <p class="h6 mb-4" style=" text-align: left">Username</p>
@@ -40,7 +40,7 @@
         <div class="d-flex justify-content-around">
           <div>
             <!-- Remember me -->
-            <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+            <mdb-checkbox [default]="true"> Remember me</mdb-checkbox>
           </div>
           <div>
             <!-- Forgot password -->

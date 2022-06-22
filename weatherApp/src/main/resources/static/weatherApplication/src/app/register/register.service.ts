@@ -14,6 +14,6 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   registerUser(user: User):Observable<any>{
-    return this.http.post<User>(`${this.baseUrl}/registerUser`, user);
+    return this.http.post<User>(`${this.baseUrl}/registerUser`, user, {responseType: 'json'});
   }
 }

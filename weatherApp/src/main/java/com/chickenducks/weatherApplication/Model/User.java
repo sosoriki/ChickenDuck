@@ -1,5 +1,7 @@
 package com.chickenducks.weatherApplication.Model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +12,13 @@ import javax.persistence.Table;
 //probably won't need
 
 @Entity
-@Table(name="users")
-public class User {
+@Table(name="registeredUsers")
+public class User{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private Long user_id;
+
 	@Column
 	private String username;
 	@Column
@@ -25,6 +27,14 @@ public class User {
 	private String role = "ROLE_USER";
 	@Column
 	private int enabled = 1;
+	
+	public Long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
+	}
 
 	public String getUsername() {
 		return username;

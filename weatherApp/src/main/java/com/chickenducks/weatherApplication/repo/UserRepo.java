@@ -9,7 +9,7 @@ import com.chickenducks.weatherApplication.Model.User;
 //probably won't need
 
 @Repository
-public interface UserRepo extends JpaRepository<User, String>{
+public interface UserRepo extends JpaRepository<User, Long>{
 
 
 }

@@ -32,7 +32,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().
                 disable()
                 .authorizeRequests()
-                .antMatchers("/main").permitAll()
+                .antMatchers("/register**").permitAll()
+//                .antMatchers("/main").authenticated()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -56,15 +57,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
 
-//	@Autowired
-//	private DataSource dataSource;
-//
-//	@Autowired
-//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
-//		auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-//			.dataSource(dataSource)
-//			.usersByUsernameQuery("select username, password, enabled from users where username=?")
-//			.authoritiesByUsernameQuery("select username, users.role from users where username=?");
-//	}
+	@Autowired
+	private DataSource dataSource;
+
+	@Autowired
+	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+		auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+			.dataSource(dataSource)
+			.usersByUsernameQuery("select username, password, enabled from registered_users where username=?")
+			.authoritiesByUsernameQuery("select username, registered_users.role from registered_users where username=?");
+	}
 	
 }
