@@ -13,7 +13,9 @@ import { WeatherApplicationComponent } from './weather-application/weather-appli
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import { ErrorComponent } from './error/error.component';
+import { ProfileComponent } from './profile/profile.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 // npm i mdb-angular-ui-kit
 // npm install angular-bootstrap-md --save
 // ng add @angular/material
@@ -26,8 +28,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     WeatherApplicationComponent,
     LogoutComponent,
     RegisterComponent,
-   
-
+    ErrorComponent,
+    ProfileComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -36,8 +39,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     FormsModule,
     GooglePlaceModule,
     AppRoutingModule,
-    MDBBootstrapModule
- 
+    MDBBootstrapModule,
+    MatButtonToggleModule
     
   ],
   providers: [{

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { RegisterService } from './register.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -57,13 +57,24 @@ export class RegisterComponent implements OnInit {
     this.user.password = this.registerForm.value.password;
     this.register.registerUser(this.user).subscribe(result => {
       this.loading = true;
-      alert("User registered. Please Log in.");
-      this.router.navigate(['']);
-      console.log("Successful register");
+      //dialog box: register alert 
+      Swal.fire({
+        title: 'SUCCESS',
+        text: 'User registered. Please Log in.',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, login!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log('Yes! ');
+          this.router.navigate(['']);
+        }
+      })  ;
     }, (error: HttpErrorResponse) => {
       console.log("Failed register");
       alert(error.message);
     })
   }
 
+ 
 }

@@ -1,3 +1,12 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div>
@@ -6,8 +15,71 @@
         <ul class="navbar-nav navbar-collapse justify-content-end"></ul>
     </nav>
 </header>
+  <div class="row text-center page-title">
+    <p class="h2 ">Welcome!</p>
+    <p class="h4">It's FREE to sign up!</p>
+  </div>
+  <div class="row   justify-content-center  ">
+    <div class="col-md-2"></div>
+    <div class="col-md-8  justify-content-center ">
+ 
+    <form  class="text-center  p-5  form-card justify-content-center " [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+        <p class="h4 mb-4">Sign up</p>
+    
+        <p class="h6 mb-4" style=" text-align: left">Username</p>
+        <input type="text" formControlName="username" placeholder="Enter Username" required class="form-control mb-4">
+        <div *ngIf="submitted && username?.errors?.['required']" style="color:red"> Username required.</div>
+      
+        <p class="h6 mb-4" style=" text-align: left">Password</p>
+        <input type="password" formControlName="password" placeholder="Enter Password" minlength="6" class="form-control mb-4">
+        <div *ngIf="submitted && password?.errors?.['required']" style="color:red">Password required.</div>
+        <div *ngIf="submitted && password?.errors?.['minlength']" style="color:red">Password must be 6 characters long.</div>
+        <button mdbBtn color="info" block="true" class="my-4" type="submit">Register</button>
+       <!-- login -->
+       <p>Already have an account? 
+        <a href="/">Log In</a>
+      </p>
+    </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
 
-<form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+ 
+  <!--footer-->
+  <div class="row text-center " style="padding-top: 30%">
+    <div class="col  ">
+      <footer class=" text-white">
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgb(7, 24, 27);">
+          © 2022 Copyright:
+          <a class="text-white" href="http://localhost:4200/main">WeatherChannel.com</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
+
+
+    
+    
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+<!-- <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
     <label>
         Username: <input type="text" formControlName="username" placeholder="Enter Username" required>
     </label>
@@ -24,4 +96,4 @@
         Password must be 6 characters long.
     </div>
       <button type="submit">Register</button>
-</form>
+</form> -->

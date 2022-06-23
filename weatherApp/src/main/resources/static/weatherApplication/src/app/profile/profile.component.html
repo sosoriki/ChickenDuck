@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <app-menu></app-menu>
+    <div class="row   justify-content-center  ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8  justify-content-center ">
+            <p class=" page-title">User Profile</p>
+            <div class="text-center  p-5  form-card justify-content-center ">
+                <button mdbBtn type="button" color="indigo" mdbWavesEffect (click)="toggle_address()" id="bt">
+                    {{buttonName_address}}
+                </button>
+                <ng-container *ngIf="showUpdateAddress">
+                    <div class="card text-center">
+                        <div class="card-header">Update Address </div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <div style="margin: 0 auto;">
+                                <div>
+                                    <form [formGroup]="infoForm" (ngSubmit)="submitAddress()">
+                                        <p class="h6 mb-4" style=" text-align: left"> Favirote location : unknown </p>
+                                        <div *ngIf="invalidLocation">
+                                            <h4 class="alert alert-warning" style="font-size: medium;">Location not
+                                                exist, check your input address</h4>
+                                        </div>
+                                        <div><input class="form-control input-lg  " placeholder="Enter city name"
+                                                ngx-google-places-autocomplete
+                                                (onAddressChange)="handleAddressChange($event)"></div>
+                                        <p class="h6 mb-4" style=" text-align: left"> User Selected : {{userAddress}}
+                                        </p>
+                                        <button mdbBtn color="info" block="true" class="my-4" type="submit"> submit
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+
+                <!-- password card-->
+                <button mdbBtn type="button" color="indigo" mdbWavesEffect (click)="toggle_password()" id="bt2">
+                    {{buttonName_password}}
+                </button>
+
+                <ng-container *ngIf="showChangePassword">
+                    <div class="card text-center">
+                        <div class="card-header">Change Password </div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <div style="margin: 0 auto;">
+
+                                <input class="form-control input-lg  " placeholder="Enter Current password">
+                                <input class="form-control input-lg  " placeholder="Enter New password">
+                                <button mdbBtn color="info" block="true" class="my-4" type="submit"> submit </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <!--footer-->
+        <div class="row text-center " style="padding-top: 30%">
+            <div class="col  ">
+                <footer class=" text-white">
+                    <!-- Grid container -->
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgb(7, 24, 27);">
+                        © 2022 Copyright:
+                        <a class="text-white" href="http://localhost:4200/main">WeatherChannel.com</a>
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

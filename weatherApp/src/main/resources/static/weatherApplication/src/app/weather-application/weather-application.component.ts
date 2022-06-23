@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import { Weather } from '../weather';
 import { Loader } from '@googlemaps/js-api-loader';
+import { AuthenticationService } from "../login/auth.service"
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-weather-application',
   templateUrl: './weather-application.component.html',
@@ -15,7 +19,7 @@ export class WeatherApplicationComponent implements OnInit {
   public weather!: Weather;
   public weathers !: Weather[];
   public condition!: string;
-  public temp!: number;
+  public temp!: any;
   public description!: string;
   public receivedInput: boolean = false;
   public conditionUrl: string = "";
@@ -24,13 +28,18 @@ export class WeatherApplicationComponent implements OnInit {
   userAddress: string = "";
   userLatitude!: number;
   userLongitude!: number;
+  invalidLocation: boolean = false;
 
   handleAddressChange = async (address: any) => {
     this.userAddress = address.formatted_address
+    if (address.formatted_address == undefined) {
+      this.invalidLocation = true;
+    } else {
+      this.invalidLocation = false;
+    }
     this.userLatitude = address.geometry.location.lat()
     this.userLongitude = address.geometry.location.lng()
     this.getWeather(this.userAddress);
-
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
       apiKey: ''
@@ -52,13 +61,18 @@ export class WeatherApplicationComponent implements OnInit {
     })
   }
 
-  constructor(private weatherService: WeatherService) {
+  constructor(private weatherService: WeatherService, private authenticationService: AuthenticationService,
+    private router: Router) {
 
 
   }
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
   ngOnInit() {
+
+    if (this.authenticationService.isUserLoggedIn() == false) {
+      this.router.navigate(['/error']);
+    }
     this.userAddress = "5001 Statesman Dr, Irving, TX 75063"
     this.getWeather(this.userAddress);
     let loader = new Loader({
@@ -84,10 +98,11 @@ export class WeatherApplicationComponent implements OnInit {
   public getMessage(): void {
     this.weatherService.getMessage().subscribe(
       (response) => {
+
         this.message = response;
         console.log(this.message);
       }, (error: HttpErrorResponse) => {
-        alert(error.message)
+
       }
 
     );
@@ -114,11 +129,12 @@ export class WeatherApplicationComponent implements OnInit {
   public getWeather(userAddress: string): void {
     this.weatherService.getWeather(userAddress).subscribe(
       (response: Weather) => {
+        this.invalidLocation = false;
         this.weather = response;
         // console.log(this.weather);
         this.getConditionImg(this.weather);
       }, (error: HttpErrorResponse) => {
-        alert(error.message)
+        this.invalidLocation = true;
       }
     );
   }

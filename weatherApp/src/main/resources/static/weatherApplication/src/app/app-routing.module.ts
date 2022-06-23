@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
- 
-// import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { WeatherApplicationComponent } from './weather-application/weather-application.component';
- 
+import { ErrorComponent } from './error/error.component'; 
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  {path: '',  component: LoginComponent},
+  {path:'',  component: LoginComponent},
   {path:'main',component: WeatherApplicationComponent},
-  {path: 'logout', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path:'logout', component: LoginComponent},
+  {path:'register', component: RegisterComponent},
+  {path:'error',component:ErrorComponent},
+  {path:'profile',component:ProfileComponent}
   ];
  
 
