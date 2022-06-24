@@ -1,6 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../login/auth.service';
 import { RegisterService } from '../register/register.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +17,18 @@ export class ProfileComponent implements OnInit {
   public showUpdateAddress: boolean = false;
   public buttonName_address: any = 'Update Address';
   public buttonName_password: any = 'Change Password';
+  user!: User;
   
-  constructor(private fb: FormBuilder, private updateAddress: RegisterService) { }
+  constructor(private fb: FormBuilder, 
+    private updateAddress: RegisterService,
+    private auth: AuthenticationService
+    ) {
+      this.user = {
+        username:'',
+        password:'',
+        address:'',
+      };
+     }
   
   ngOnInit(): void {
     this.initializeForm();
@@ -57,9 +70,16 @@ export class ProfileComponent implements OnInit {
   }
 
   submitAddress() {
-    // this.updateAddress.updateAddress(this.user).subscribe(result => {
-
-    // })
+    this.user.username = this.auth.getLoggedInUserName();
+    this.user.address = this.userAddress;
+    console.log(this.user.username);
+    console.log(this.user.address);
+    this.updateAddress.registerAddress(this.user).subscribe(result => {
+      console.log("Address registered!");
+    },(error: HttpErrorResponse) => {
+      console.log("Failed register");
+      alert(error.message);
+  })
   }
 
 }

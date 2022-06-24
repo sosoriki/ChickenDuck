@@ -95,12 +95,20 @@ public class WeatherResource {
 		
     }
 	
-//	@PutMapping("/updateAddress")
-//	public ReponseEntity<User> updateAddress(@RequestBody String address){
-//		User updateUser = repo.findByUsername(user.getUsername());
-//		updateUser.setAddress(address);
-//		repo.updateUser(updateUser);
-//	}
+	@PutMapping("/registerAddress")
+	public ResponseEntity<User> registerAddress(@RequestBody User user){
+		User updateUser = repo.findByUsername(user.getUsername()).get();
+		updateUser.setUser_id(updateUser.getUser_id());
+		updateUser.setUsername(user.getUsername());
+		updateUser.setPassword(updateUser.getPassword());
+		updateUser.setRole(updateUser.getRole());
+		updateUser.setAddress(user.getAddress());
+		updateUser.setEnabled(updateUser.getEnabled());
+		
+		repo.save(updateUser);
+		
+		return new ResponseEntity<>(updateUser, HttpStatus.OK);
+	}
 
 
 

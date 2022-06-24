@@ -17,11 +17,8 @@ export class RegisterService {
     return this.http.post<User>(`${this.baseUrl}/registerUser`, user, {responseType: 'json'});
   }
 
-  updateAddress(address: string, username: string):Observable<any>{
-    return this.http.put<User>(`${this.baseUrl}/updateAddress`, username, {responseType: 'json'});
-  }
   registerAddress(user: User):Observable<any>{
-    return this.http.post<User>(`${this.baseUrl}/registerAddress`, user, {responseType: 'json'});
+    return this.http.put<User>(`${this.baseUrl}/registerAddress`, user, {responseType: 'json'});
   }
   
 }
