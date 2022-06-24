@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegisterService } from '../register/register.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,9 @@ export class ProfileComponent implements OnInit {
   public showUpdateAddress: boolean = false;
   public buttonName_address: any = 'Update Address';
   public buttonName_password: any = 'Change Password';
-  constructor(private fb: FormBuilder) { }
+  
+  constructor(private fb: FormBuilder, private updateAddress: RegisterService) { }
+  
   ngOnInit(): void {
     this.initializeForm();
   }
@@ -54,8 +57,9 @@ export class ProfileComponent implements OnInit {
   }
 
   submitAddress() {
-    //todo: send
-    //save address to database
+    // this.updateAddress.updateAddress(this.user).subscribe(result => {
+
+    // })
   }
 
 }

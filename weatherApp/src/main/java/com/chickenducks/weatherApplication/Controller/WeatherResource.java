@@ -7,6 +7,9 @@ import com.chickenducks.weatherApplication.Model.Weather;
 import com.chickenducks.weatherApplication.Service.WeatherService;
 import com.chickenducks.weatherApplication.repo.UserRepo;
 
+import java.util.Optional;
+
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +17,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @RestController
 public class WeatherResource {
@@ -68,20 +73,34 @@ public class WeatherResource {
 	@PostMapping("/registerUser")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
 		User newUser = new User();
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		Optional<User> check = repo.findByUsername(user.getUsername());
+		if(check.isPresent()) {
+			System.out.println("Username exists!");
+			return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+		}
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         newUser.setUsername(user.getUsername());
         newUser.setPassword(encodedPassword);
         
         System.out.println(newUser.getUsername());
         System.out.println(newUser.getPassword());
-        System.out.println(newUser.getUser_id());
         System.out.println(newUser.getEnabled());
         
         repo.save(newUser);
          
         return new ResponseEntity<>(newUser, HttpStatus.OK);
+
+		
     }
+	
+//	@PutMapping("/updateAddress")
+//	public ReponseEntity<User> updateAddress(@RequestBody String address){
+//		User updateUser = repo.findByUsername(user.getUsername());
+//		updateUser.setAddress(address);
+//		repo.updateUser(updateUser);
+//	}
 
 
 

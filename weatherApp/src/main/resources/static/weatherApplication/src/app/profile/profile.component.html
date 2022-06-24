@@ -24,14 +24,14 @@
                             <div style="margin: 0 auto;">
                                 <div>
                                     <form [formGroup]="infoForm" (ngSubmit)="submitAddress()">
-                                        <p class="h6 mb-4" style=" text-align: left"> Favirote location : unknown </p>
+                                        <p class="h6 mb-4" style=" text-align: left"> Favorite location : unknown </p>
                                         <div *ngIf="invalidLocation">
                                             <h4 class="alert alert-warning" style="font-size: medium;">Location not
                                                 exist, check your input address</h4>
                                         </div>
                                         <div><input class="form-control input-lg  " placeholder="Enter city name"
                                                 ngx-google-places-autocomplete
-                                                (onAddressChange)="handleAddressChange($event)"></div>
+                                                (onAddressChange)="handleAddressChange($event)"></div><br/>
                                         <p class="h6 mb-4" style=" text-align: left"> User Selected : {{userAddress}}
                                         </p>
                                         <button mdbBtn color="info" block="true" class="my-4" type="submit"> submit

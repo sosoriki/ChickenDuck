@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   loginSuccess = false;
   showErrorMessage = false;
   islogin = false;
+  loggedInUsername = '';
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -36,16 +38,22 @@ export class LoginComponent implements OnInit {
   initializeForm(): void {
     this.loginForm = this.fb.group({
       username: '',
-      password: ''
+      password: '',
     })
   }
   display(): void {
     console.log("clicked");
   }
+
+  getLoggedUsername(){
+    return this.loggedInUsername;
+  }
+
   onSubmit(): void {
     this.authenticationService.authenticationService(this.loginForm.value.username, this.loginForm.value.password).subscribe((result) => {
       this.invalidLogin = false;
       this.loginSuccess = true;
+      this.loggedInUsername = this.loginForm.value.username;
       this.successMessage = 'Login Successful.';
       this.router.navigate(['/main']);
       console.log("Success");

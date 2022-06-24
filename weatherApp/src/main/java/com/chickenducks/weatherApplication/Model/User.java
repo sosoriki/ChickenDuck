@@ -27,7 +27,10 @@ public class User{
 	private String role = "ROLE_USER";
 	@Column
 	private int enabled = 1;
+	@Column
+	private String address;
 	
+
 	public Long getUser_id() {
 		return user_id;
 	}
@@ -66,6 +69,14 @@ public class User{
 	
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

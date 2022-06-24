@@ -62,6 +62,7 @@ createAuthoTokenNoHeader(username: String, password: String){
     if (user === null) return ''
     return user
   }
+  
   getAuthToken(){
     return sessionStorage.getItem(this.AUTH_TOKEN);
   }
