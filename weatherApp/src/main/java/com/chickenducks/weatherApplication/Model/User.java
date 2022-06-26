@@ -29,6 +29,8 @@ public class User{
 	private int enabled = 1;
 	@Column
 	private String address;
+	@Column
+	private String answer;
 	
 
 	public Long getUser_id() {
@@ -77,6 +79,14 @@ public class User{
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
 }

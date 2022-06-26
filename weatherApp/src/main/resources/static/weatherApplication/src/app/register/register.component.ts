@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
     this.user = {
       username:'',
       password:'',
+      answer: '',
       address:'',
     };
   }
@@ -35,7 +36,8 @@ export class RegisterComponent implements OnInit {
   initializeForm():void{
     this.registerForm = this.fb.group({
       username: ['',[Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      answer: ['',[Validators.required]]
     })
   }
 
@@ -47,15 +49,21 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
+  get answer(){ 
+    return this.registerForm.get('answer');
+  }
+
   submitRegister(){
     this.submitted = true;
     console.log(this.registerForm.value.username);
     console.log(this.registerForm.value.password);
+    console.log(this.registerForm.value.answer);
     if(this.registerForm.invalid){
       return;
     }
     this.user.username = this.registerForm.value.username;
     this.user.password = this.registerForm.value.password;
+    this.user.answer = this.registerForm.value.answer;
     this.register.registerUser(this.user).subscribe(result => {
       this.loading = true;
       //dialog box: register alert 

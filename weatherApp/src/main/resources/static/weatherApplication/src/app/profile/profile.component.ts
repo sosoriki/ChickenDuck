@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ForgotService } from '../forgot/forgot.service';
 import { AuthenticationService } from '../login/auth.service';
 import { RegisterService } from '../register/register.service';
 import { User } from '../user';
@@ -18,14 +19,17 @@ export class ProfileComponent implements OnInit {
   public buttonName_address: any = 'Update Address';
   public buttonName_password: any = 'Change Password';
   user!: User;
+  submitted = false;
   
   constructor(private fb: FormBuilder, 
     private updateAddress: RegisterService,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private passwordService: ForgotService
     ) {
       this.user = {
         username:'',
         password:'',
+        answer: '',
         address:'',
       };
      }
@@ -35,9 +39,13 @@ export class ProfileComponent implements OnInit {
   }
 
   infoForm!: FormGroup;
+  passwordForm!: FormGroup;
   initializeForm(): void {
     this.infoForm = this.fb.group({
       userAddress: ""
+    })
+    this.passwordForm = this.fb.group({
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
   handleAddressChange = async (address: any) => {
@@ -78,6 +86,27 @@ export class ProfileComponent implements OnInit {
       console.log("Address registered!");
     },(error: HttpErrorResponse) => {
       console.log("Failed register");
+      alert(error.message);
+  })
+  }
+
+  get newPassword(){ 
+    return this.passwordForm.get('newPassword');
+  }
+
+  onChangePassword(){
+    this.submitted = true;
+    if(this.passwordForm.invalid){
+      return;
+    }
+    this.user.username = this.auth.getLoggedInUserName();
+    this.user.password = this.passwordForm.value.newPassword;
+    console.log(this.user.username);
+    console.log(this.user.password);
+    this.passwordService.forgotPasswordNoUsername(this.user).subscribe(result => {
+      console.log("same password");
+    },(error: HttpErrorResponse) => {
+      console.log("wrong password");
       alert(error.message);
   })
   }

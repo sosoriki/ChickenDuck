@@ -50,20 +50,22 @@
                 </button>
 
                 <ng-container *ngIf="showChangePassword">
+                <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
                     <div class="card text-center">
                         <div class="card-header">Change Password </div>
                         <div class="card-body">
                             <h5 class="card-title"></h5>
                             <div style="margin: 0 auto;">
 
-                                <input class="form-control input-lg  " placeholder="Enter Current password">
-                                <input class="form-control input-lg  " placeholder="Enter New password">
+                                <!-- <input type="password" formControlName="currentPassword" class="form-control input-lg" placeholder="Enter Current password"> -->
+                                <input type="password" formControlName="newPassword" class="form-control input-lg" placeholder="Enter New password">
+                                <div *ngIf="submitted && newPassword?.errors?.['minlength']" style="color:red">Password must be 6 characters long.</div>
                                 <button mdbBtn color="info" block="true" class="my-4" type="submit"> submit </button>
 
                             </div>
                         </div>
                     </div>
-
+                </form>
                 </ng-container>
             </div>
         </div>

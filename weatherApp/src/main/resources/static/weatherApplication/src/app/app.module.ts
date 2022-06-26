@@ -16,6 +16,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ErrorComponent } from './error/error.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { ForgotComponent } from './forgot/forgot.component';
 // npm i mdb-angular-ui-kit
 // npm install angular-bootstrap-md --save
 // ng add @angular/material
@@ -30,6 +31,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     RegisterComponent,
     ErrorComponent,
     ProfileComponent,
+    ForgotComponent,
  
   ],
   imports: [

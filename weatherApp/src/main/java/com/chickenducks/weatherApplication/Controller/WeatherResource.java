@@ -83,9 +83,11 @@ public class WeatherResource {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         newUser.setUsername(user.getUsername());
         newUser.setPassword(encodedPassword);
+        newUser.setAnswer(user.getAnswer());
         
         System.out.println(newUser.getUsername());
         System.out.println(newUser.getPassword());
+        System.out.println(newUser.getAnswer());
         System.out.println(newUser.getEnabled());
         
         repo.save(newUser);
@@ -104,10 +106,64 @@ public class WeatherResource {
 		updateUser.setRole(updateUser.getRole());
 		updateUser.setAddress(user.getAddress());
 		updateUser.setEnabled(updateUser.getEnabled());
+		updateUser.setAnswer(updateUser.getAnswer());
 		
 		repo.save(updateUser);
 		
 		return new ResponseEntity<>(updateUser, HttpStatus.OK);
+	}
+	
+	@PutMapping("/forgotPassword")
+	public ResponseEntity<User> forgotPassword(@RequestBody User user){
+		Optional<User> check = repo.findByUsername(user.getUsername());
+		if(!check.isPresent()) {
+			System.out.println("Username does NOT exist!");
+			return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+		}
+		User updateUser = repo.findByUsername(user.getUsername()).get();
+		System.out.println(user.getAnswer());
+		System.out.println(updateUser.getAnswer());
+		if(user.getAnswer().equals(updateUser.getAnswer())) {
+			System.out.println(updateUser.getPassword());
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	        String encodedPassword = passwordEncoder.encode(user.getPassword());
+	        System.out.println(encodedPassword);
+			updateUser.setUser_id(updateUser.getUser_id());
+			updateUser.setUsername(user.getUsername());
+			updateUser.setPassword(encodedPassword);
+			updateUser.setRole(updateUser.getRole());
+			updateUser.setAddress(updateUser.getAddress());
+			updateUser.setEnabled(updateUser.getEnabled());
+			updateUser.setAnswer(updateUser.getAnswer());
+			
+			repo.save(updateUser);
+			
+			return new ResponseEntity<>(updateUser, HttpStatus.OK);
+		}
+		
+		System.out.println("yo you failed");
+		return new ResponseEntity<>(updateUser, HttpStatus.BAD_REQUEST);
+	}
+	
+	@PutMapping("/forgotPasswordNoUsername")
+	public ResponseEntity<User> forgotPasswordNoUsername(@RequestBody User user){
+		User updateUser = repo.findByUsername(user.getUsername()).get();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        System.out.println("Old Password" + updateUser.getPassword());
+        System.out.println("New Password" + encodedPassword);
+        updateUser.setUser_id(updateUser.getUser_id());
+		updateUser.setUsername(user.getUsername());
+		updateUser.setPassword(encodedPassword);
+		updateUser.setRole(updateUser.getRole());
+		updateUser.setAddress(updateUser.getAddress());
+		updateUser.setEnabled(updateUser.getEnabled());
+		updateUser.setAnswer(updateUser.getAnswer());
+		
+		repo.save(updateUser);
+        
+        
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
 	}
 
 
