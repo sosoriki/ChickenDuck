@@ -8,7 +8,7 @@
 
 <body>
   <app-menu></app-menu>
-  <div class="container-xl">
+  <div class="appcontainer">
     <header>
       <!-- Background image -->
       <div class="p-5 text-center bg-image bg-1 shadow-lg " style="background-image: url('https://images.unsplash.com/photo-1539667468225-eebb663053e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1634&q=80');
@@ -30,7 +30,7 @@
             <div *ngIf="invalidLocation">
               <h4 class="alert alert-warning" style="font-size: medium;">Location not exist, check your input address</h4>
           </div>
-         
+          <p class="weather-title ">Search City</p>
             <div><input class="form-control input-lg  " placeholder="Enter city name" ngx-google-places-autocomplete
                 (onAddressChange)="handleAddressChange($event)"></div>
             <!--#search bar-->
@@ -111,6 +111,7 @@
                   <p>Wind Speed:</p>
                   <p>Wind Degree:</p>
                 </div>
+                
                 <div  *ngIf="!invalidLocation"class="col-8">
                   <p>Feels like :{{weather?.feels_like}} F | {{convertToC(weather?.feels_like)}} C</p>
                   <p>Pressure: {{ weather?.pressure}} hPa</p>
@@ -119,11 +120,18 @@
                   <p>Wind Degree: {{weather?.deg}} Degrees</p>
                 </div>
               </div>
+             
             </div>
           </div>
           <div class="col-1"></div>
         </div>
+        <div>
 
+
+
+
+
+        </div>
         <!--4th row-->
         <div class="row p-5">
           <p class="weather-title  ">Google Map</p>
@@ -139,17 +147,112 @@
       </div>
       <!--end of left col-->
       <div class="col-1 "> </div>
-      <!--begin of right col -->
-      <div class="col-3 bg-1  ">
 
+      <!--begin of right col -->
+      <div class="col-3 p-2 bg-1">
+        <p class="weather-title ">Forecast</p>
         <!--1st row-->
-        <div class="row">
-          <div class="col-4"> </div>
+        <div class="row  ">
+  
+    
+          
+        <div>
+          <mat-accordion>
+            <mat-expansion-panel >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  title
+                </mat-panel-title>
+                <mat-panel-description>
+                    Next 24 hrs
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <li *ngFor="let i of forecast | slice:0:8">{{i.date}} UTC
+                  <p> {{i.temp}}  {{i.condition}} </p>
+     
+                   
+              </li>
+            </mat-expansion-panel>
+
+              <mat-expansion-panel >
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    title
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Next 48 hrs
+                   
+                  </mat-panel-description>
+                   
+                </mat-expansion-panel-header>
+            <li *ngFor="let i of forecast | slice:8:16">{{i.date}} UTC
+              <p> {{i.temp}}  {{i.condition}} </p>
+            </li>
+              </mat-expansion-panel>
+            
+           
+                <mat-expansion-panel >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      title
+                    </mat-panel-title>
+                    <mat-panel-description> 
+                      Next 72 hrs
+                    </mat-panel-description>
+                     
+                  </mat-expansion-panel-header>
+                      <li *ngFor="let i of forecast | slice:16:24">{{i.date}} UTC
+                        <p> {{i.temp}}  {{i.condition}} </p>
+                      </li>
+                </mat-expansion-panel>
+
+
+                  <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                   title
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Next 96 hrs
+                       
+                       
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+         <li *ngFor="let i of forecast | slice:24:32">{{i.date}} UTC
+          <p> {{i.temp}}  {{i.condition}} </p>
+                  </mat-expansion-panel>
+
+
+                    <mat-expansion-panel >
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          title
+                        </mat-panel-title>
+                        <mat-panel-description>
+                         Next 120 hrs
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                             <li *ngFor="let i of forecast | slice:32:40">{{i.date}} UTC
+                              <p> {{i.temp}}  {{i.condition}} </p>
+                             </li>
+
+                    </mat-expansion-panel>
+            
+                   
+          </mat-accordion>
+  </div>
+                
+            <!-- <div *ngFor="let element of forecast">
+                  <p>Date: {{element.date}} </p>
+                  <p>Temperature: {{element.temp}} </p>
+                  <p>Max Temperature: {{element.max_temp}}, Min Temperature: {{element.min_temp}}</p>
+                  <p>Condition: {{element.condition}}</p>
+            </div>  -->
+   
+        </div>
         </div>
         <!--2nd row-->
-        <div class="row">
-          <div class="col-4"> </div>
-        </div>
+ 
       </div>
       <!--end of right col -->
       <div class="row">
@@ -172,7 +275,7 @@
       </footer>
     </div>
   </div>
-  </div>
+
   <!--END of container-->
 </body>
 

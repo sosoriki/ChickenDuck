@@ -5,6 +5,7 @@ import { Weather } from '../weather';
 import { Loader } from '@googlemaps/js-api-loader';
 import { AuthenticationService } from "../login/auth.service"
 import { Router } from '@angular/router';
+import { Forecast } from '../forecast';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class WeatherApplicationComponent implements OnInit {
   public address: string = "";
   public formdata: any;
   public weather!: Weather;
-  public weathers !: Weather[];
+  public forecast !: Forecast[];
   public condition!: string;
   public temp!: any;
   public description!: string;
@@ -29,7 +30,7 @@ export class WeatherApplicationComponent implements OnInit {
   userLatitude!: number;
   userLongitude!: number;
   invalidLocation: boolean = false;
-
+  panelOpenState = false;
   handleAddressChange = async (address: any) => {
     this.userAddress = address.formatted_address
     if (address.formatted_address == undefined) {
@@ -40,9 +41,10 @@ export class WeatherApplicationComponent implements OnInit {
     this.userLatitude = address.geometry.location.lat()
     this.userLongitude = address.geometry.location.lng()
     this.getWeather(this.userAddress);
+    this.getForecast(this.userAddress);
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: ''
+      apiKey: ' '
     })
     //add google map
     loader.load().then(() => {
@@ -75,9 +77,10 @@ export class WeatherApplicationComponent implements OnInit {
     }
     this.userAddress = "5001 Statesman Dr, Irving, TX 75063"
     this.getWeather(this.userAddress);
+    this.getForecast(this.userAddress);
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: ''
+      apiKey: ' '
     })
     //add google map
     loader.load().then(() => {
@@ -124,6 +127,7 @@ export class WeatherApplicationComponent implements OnInit {
     if (this.weather.condition == 'Squail') this.conditionUrl = "https://st3.depositphotos.com/25280234/31824/v/950/depositphotos_318244518-stock-illustration-cute-cloud-blowing-storm-cloud.jpg?forcejpeg=true";
     if (this.weather.condition == 'Tornado') this.conditionUrl = "https://img.freepik.com/free-vector/cartoon-tornado-character-storm-whirlwind-twister-cyclone-hurricane-isolated-vector-funny-cute-tornado-wind-typhoon-cloud-emoji-with-face-smile-kids-cartoon-comic-weather-character_8071-10806.jpg?w=2000";
   }
+  
 
   // send cityname to backend and request a weather back
   public getWeather(userAddress: string): void {
@@ -131,10 +135,20 @@ export class WeatherApplicationComponent implements OnInit {
       (response: Weather) => {
         this.invalidLocation = false;
         this.weather = response;
-        // console.log(this.weather);
         this.getConditionImg(this.weather);
       }, (error: HttpErrorResponse) => {
         this.invalidLocation = true;
+      }
+    );
+  }
+
+  // send cityname to backend and request a forecast back
+  public getForecast(userAddress: string): void {
+    this.weatherService.getForecast(userAddress).subscribe(
+      (response:Forecast[]) => {
+        this.forecast = response;  
+      }, (error: HttpErrorResponse) => { 
+        alert(error.message)
       }
     );
   }

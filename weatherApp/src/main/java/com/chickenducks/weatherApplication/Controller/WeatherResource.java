@@ -13,6 +13,7 @@ import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import javax.sql.DataSource;
 
 @RestController
 public class WeatherResource {
@@ -64,7 +67,7 @@ public class WeatherResource {
 
         Weather weather = weatherServiceImpl.weather(weatherResponse);
         System.out.println(weather);
-        return new ResponseEntity<Weather>(weather, HttpStatus.OK);
+        return new ResponseEntity<>(weather, HttpStatus.OK);
     }
     
     @Autowired
@@ -98,7 +101,7 @@ public class WeatherResource {
     }
 	
 	@PutMapping("/registerAddress")
-	public ResponseEntity<User> registerAddress(@RequestBody User user){
+	public ResponseEntity<User> registerAddress(@RequestBody User user,User user2){
 		User updateUser = repo.findByUsername(user.getUsername()).get();
 		updateUser.setUser_id(updateUser.getUser_id());
 		updateUser.setUsername(user.getUsername());

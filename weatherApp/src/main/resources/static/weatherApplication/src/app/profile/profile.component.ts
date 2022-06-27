@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForgotService } from '../forgot/forgot.service';
 import { AuthenticationService } from '../login/auth.service';
 import { RegisterService } from '../register/register.service';
-import { User } from '../user';
-
+import { User } from '../user'; 
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,7 +24,9 @@ export class ProfileComponent implements OnInit {
   constructor(private fb: FormBuilder, 
     private updateAddress: RegisterService,
     private auth: AuthenticationService,
-    private passwordService: ForgotService
+    private passwordService: ForgotService,
+    private authenticationService: AuthenticationService,
+    private router: Router
     ) {
       this.user = {
         username:'',
@@ -35,6 +37,9 @@ export class ProfileComponent implements OnInit {
      }
   
   ngOnInit(): void {
+    if (this.authenticationService.isUserLoggedIn() == false) {
+      this.router.navigate(['/error']);
+    }
     this.initializeForm();
   }
 

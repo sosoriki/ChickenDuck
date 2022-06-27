@@ -37,10 +37,10 @@ import { AuthenticationService } from './login/auth.service';
     }
 
     public getForecast(address : string): Observable<Forecast[]>{
-      return this.http.get<Forecast[]>(`${this.apiServerUrl}/getForecast/location/${address}`)
+      return this.http.get<Forecast[]>(`${this.apiServerUrl}/getForecast/location/${address}`,{responseType: 'json'});
     }
 
-
+ 
     
 
   }

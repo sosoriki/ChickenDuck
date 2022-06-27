@@ -1,15 +1,37 @@
-<form [formGroup]="forgotForm" (ngSubmit)="onSubmit()">
-    <div class="card text-center">
-        <div class="card-header">Change Password </div>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div>
+                <a href="/" class="navbar-brand">Weather App</a>
+            </div>
+            <ul class="navbar-nav navbar-collapse justify-content-end"></ul>
+        </nav>
+    </header>
+    <!--2nd row-->
+    <div class="row   justify-content-center  ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8  ">
+<form  class="text-center p-5 form-card justify-content-center "[formGroup]="forgotForm" (ngSubmit)="onSubmit()">
+        <p class="weather-title "> Change Password </p> 
+        <div class="card text-center">
+
+    
         <div class="card-body">
             <h5 class="card-title"></h5>
             <div style="margin: 0 auto;">
-                <input type="text" formControlName="username" placeholder="Username" class="form-control input-lg">
+                <input type="text" formControlName="username" placeholder="Username" class="form-control mb-4">
                 <div *ngIf="submitted && username?.errors?.['required']" style="color:red"> Username required.</div>
                 <p>What was your favorite food as a child?</p>
-                <input type="text" formControlName="answer" placeholder="Answer" class="form-control input-lg">
+                <input type="text" formControlName="answer" placeholder="Answer" class="form-control mb-4">
                 <div *ngIf="submitted && answer?.errors?.['required']" style="color:red"> Answer required.</div>
-                <input type="password" formControlName="password" placeholder="Enter New password" class="form-control input-lg">
+                <input type="password" formControlName="password" placeholder="Enter New password" class="form-control mb-4">
                 <div *ngIf="submitted && password?.errors?.['required']" style="color:red">Password required.</div>
                 <div *ngIf="submitted && password?.errors?.['minlength']" style="color:red">Password must be 6 characters long.</div>
                 <button mdbBtn color="info" block="true" class="my-4" type="submit"> Submit </button>
@@ -18,3 +40,21 @@
         </div>
     </div>
 </form>
+
+</div>
+    <!--footer-->
+    <div class="row text-center " style="padding-top: 30%">
+        <div class="col  ">
+          <footer class=" text-white">
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgb(7, 24, 27);">
+              © 2022 Copyright:
+              <a class="text-white" href="http://localhost:4200/main">WeatherChannel.com</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+        </div>
+      </div>
+</div>
+</body></html>

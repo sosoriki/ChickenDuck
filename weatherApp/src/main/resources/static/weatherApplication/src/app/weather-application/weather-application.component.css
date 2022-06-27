@@ -1,8 +1,16 @@
-.test-b{
-	background-color: black;
-}
-.test-r{
-	background-color: red;
+ 
+
+.appcontainer{
+	border-radius: 20px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 20px;
+	margin: auto;
+	margin-top: 50px;
+	min-width: 700px;
+    width:  60%;
+    height: 100%;
+   
 }
  
 .bg-1{

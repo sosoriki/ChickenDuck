@@ -20,7 +20,7 @@ public class WeatherResponse {
 
     private String formattedAddress;
 
-    private String cod;
+
 
     public Coordinate getCoordinate() {
         return coordinate;
@@ -54,13 +54,6 @@ public class WeatherResponse {
         this.formattedAddress = formattedAddress;
     }
 
-    public String getCod() {
-        return cod;
-    }
-
-    public void setCod(String cod) {
-        this.cod = cod;
-    }
 
     public Wind getWind() {
         return wind;
@@ -78,7 +71,6 @@ public class WeatherResponse {
                 ", temperature=" + temperature +
                 ", wind=" + wind +
                 ", formattedAddress='" + formattedAddress + '\'' +
-                ", cod='" + cod + '\'' +
                 '}';
     }
 }

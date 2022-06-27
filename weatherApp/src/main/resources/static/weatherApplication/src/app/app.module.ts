@@ -17,6 +17,9 @@ import { ErrorComponent } from './error/error.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ForgotComponent } from './forgot/forgot.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // npm i mdb-angular-ui-kit
 // npm install angular-bootstrap-md --save
 // ng add @angular/material
@@ -33,6 +36,7 @@ import { ForgotComponent } from './forgot/forgot.component';
     ProfileComponent,
     ForgotComponent,
  
+     
   ],
   imports: [
     BrowserModule,
@@ -42,8 +46,11 @@ import { ForgotComponent } from './forgot/forgot.component';
     GooglePlaceModule,
     AppRoutingModule,
     MDBBootstrapModule,
-    MatButtonToggleModule
-    
+    MatButtonToggleModule,
+    MatExpansionModule,
+    BrowserAnimationsModule,
+
+     
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

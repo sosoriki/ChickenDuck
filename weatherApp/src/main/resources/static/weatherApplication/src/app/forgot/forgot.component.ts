@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { ForgotService } from './forgot.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
@@ -64,9 +64,26 @@ export class ForgotComponent implements OnInit {
     this.forgotService.forgotPassword(this.user).subscribe(result => {
       console.log("Password Changed!");
       this.router.navigate(['']);
+      Swal.fire({
+        title: 'SUCCESS',
+        text: 'Password Changed!',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['']);
+        }
+      })  ;
     },(error: HttpErrorResponse) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'FAIL',
+        text: 'Wrong security answer/username',
+        confirmButtonText: 'Ok',
+      }).then((result) => {
+      })  ;
       console.log("Answer Fail!");
-      alert(error.message);
+
   })
 }
 
