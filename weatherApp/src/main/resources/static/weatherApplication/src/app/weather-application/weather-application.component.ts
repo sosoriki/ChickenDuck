@@ -44,7 +44,7 @@ export class WeatherApplicationComponent implements OnInit {
     this.getForecast(this.userAddress);
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: ' '
+      apiKey: ''
     })
     //add google map
     loader.load().then(() => {
@@ -80,7 +80,7 @@ export class WeatherApplicationComponent implements OnInit {
     this.getForecast(this.userAddress);
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: ' '
+      apiKey: ''
     })
     //add google map
     loader.load().then(() => {

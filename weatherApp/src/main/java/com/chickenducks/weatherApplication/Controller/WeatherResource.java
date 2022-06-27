@@ -153,8 +153,8 @@ public class WeatherResource {
 		User updateUser = repo.findByUsername(user.getUsername()).get();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
-        System.out.println("Old Password" + updateUser.getPassword());
-        System.out.println("New Password" + encodedPassword);
+        System.out.println("Old Password: " + updateUser.getPassword());
+        System.out.println("New Password: " + encodedPassword);
         updateUser.setUser_id(updateUser.getUser_id());
 		updateUser.setUsername(user.getUsername());
 		updateUser.setPassword(encodedPassword);
