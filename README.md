@@ -42,11 +42,11 @@ The frontend is built with Angular 12 and the backend is build with Spring Boot 
 - When the application is fully started, the user will be prompted with a login page
 - From here you can login with an existing account from your SQL or register a new account
 
-![This is an image](https://i.postimg.cc/MTHj0Ph9/image.png)
+  ![This is an image](https://i.postimg.cc/MTHj0Ph9/image.png)
 
 - After successful log in you will be taken to the main page in which you can search up your location and get weather details
 
-![This is an image](https://i.postimg.cc/qBCWjkXd/image.png)
+  ![This is an image](https://i.postimg.cc/qBCWjkXd/image.png)
 
 
 
