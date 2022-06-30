@@ -27,10 +27,101 @@ public class Forecast implements Serializable{
 	private double humidity;
 	private String iconUrl;
 	private double speed;
-	private double deg;
+	private String deg;
 	private double gust;
 
 	private String date;
+	private long dt;
+	private String localTime;
+	private String month;
+	private String dateOfWeek;
+	private int day;
+	private String hour;
+	private String shortTimezone;
+
+	@Override
+	public String toString() {
+		return "Forecast{" +
+				"latitude=" + latitude +
+				", longitude=" + longitude +
+				", temp=" + temp +
+				", max_temp=" + max_temp +
+				", min_temp=" + min_temp +
+				", condition='" + condition + '\'' +
+				", description='" + description + '\'' +
+				", feels_like=" + feels_like +
+				", pressure=" + pressure +
+				", humidity=" + humidity +
+				", iconUrl='" + iconUrl + '\'' +
+				", speed=" + speed +
+				", deg=" + deg +
+				", gust=" + gust +
+				", date='" + date + '\'' +
+				", dt=" + dt +
+				", localTime='" + localTime + '\'' +
+				", month='" + month + '\'' +
+				", dateOfWeek='" + dateOfWeek + '\'' +
+				", day=" + day +
+				", hour=" + hour +
+				", shortTimezone='" + shortTimezone + '\'' +
+				'}';
+	}
+
+	public String getShortTimezone() {
+		return shortTimezone;
+	}
+
+	public void setShortTimezone(String shortTimezone) {
+		this.shortTimezone = shortTimezone;
+	}
+
+	public String getDateOfWeek() {
+		return dateOfWeek;
+	}
+
+	public void setDateOfWeek(String dateOfWeek) {
+		this.dateOfWeek = dateOfWeek;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public String getHour() {
+		return hour;
+	}
+
+	public void setHour(String hour) {
+		this.hour = hour;
+	}
+
+	public String getLocalTime() {
+		return localTime;
+	}
+
+	public void setLocalTime(String localTime) {
+		this.localTime = localTime;
+	}
+
+	public long getDt() {
+		return dt;
+	}
+
+	public void setDt(long dt) {
+		this.dt = dt;
+	}
 
 	public double getLatitude() {
 		return latitude;
@@ -128,12 +219,12 @@ public class Forecast implements Serializable{
 		this.speed = speed;
 	}
 
-	public double getDeg() {
-		return deg;
+	public void setDeg(String deg) {
+		this.deg = deg;
 	}
 
-	public void setDeg(double deg) {
-		this.deg = deg;
+	public String getDeg() {
+		return deg;
 	}
 
 	public double getGust() {
@@ -153,24 +244,4 @@ public class Forecast implements Serializable{
 		this.date = date;
 	}
 
-	@Override
-	public String toString() {
-		return "Forecast{" +
-				"latitude=" + latitude +
-				", longitude=" + longitude +
-				", temp=" + temp +
-				", max_temp=" + max_temp +
-				", min_temp=" + min_temp +
-				", condition='" + condition + '\'' +
-				", description='" + description + '\'' +
-				", feels_like=" + feels_like +
-				", pressure=" + pressure +
-				", humidity=" + humidity +
-				", iconUrl='" + iconUrl + '\'' +
-				", speed=" + speed +
-				", deg=" + deg +
-				", gust=" + gust +
-				", date='" + date + '\'' +
-				'}';
-	}
 }

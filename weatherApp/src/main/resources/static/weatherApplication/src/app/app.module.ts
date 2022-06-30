@@ -56,7 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptorService,
     multi: true
-  }],
+  },LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

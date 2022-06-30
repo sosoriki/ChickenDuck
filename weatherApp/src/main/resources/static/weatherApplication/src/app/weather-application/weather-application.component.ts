@@ -6,6 +6,8 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { AuthenticationService } from "../login/auth.service"
 import { Router } from '@angular/router';
 import { Forecast } from '../forecast';
+import { LoginComponent } from '../login/login.component'
+
 
 
 @Component({
@@ -19,19 +21,24 @@ export class WeatherApplicationComponent implements OnInit {
   public formdata: any;
   public weather!: Weather;
   public forecast !: Forecast[];
+  public slices: number[] = [];
+  dayofweek!: string;
   public condition!: string;
   public temp!: any;
   public description!: string;
   public receivedInput: boolean = false;
   public conditionUrl: string = "";
   public receivedUrl: boolean = false;
+  public defaultAddress: string = "";
   //goolge place api autocomplete
   userAddress: string = "";
   userLatitude!: number;
   userLongitude!: number;
   invalidLocation: boolean = false;
+  loadForecest: boolean = false;
   panelOpenState = false;
   handleAddressChange = async (address: any) => {
+
     this.userAddress = address.formatted_address
     if (address.formatted_address == undefined) {
       this.invalidLocation = true;
@@ -42,6 +49,7 @@ export class WeatherApplicationComponent implements OnInit {
     this.userLongitude = address.geometry.location.lng()
     this.getWeather(this.userAddress);
     this.getForecast(this.userAddress);
+
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
       apiKey: ''
@@ -61,23 +69,33 @@ export class WeatherApplicationComponent implements OnInit {
         icon: "",
       });
     })
+
+
   }
+  username: any;
 
   constructor(private weatherService: WeatherService, private authenticationService: AuthenticationService,
-    private router: Router) {
+    private router: Router, private loginComponent: LoginComponent) {
 
 
   }
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
   ngOnInit() {
-
     if (this.authenticationService.isUserLoggedIn() == false) {
       this.router.navigate(['/error']);
     }
     this.userAddress = "5001 Statesman Dr, Irving, TX 75063"
+
+    console.log("request:", this.loginComponent.userAddress);
+    //get address from loginComponent 
+    if (this.loginComponent.userAddress != '') {
+      this.userAddress = this.loginComponent.userAddress;
+
+    }
+    console.log(this.userAddress);
+
     this.getWeather(this.userAddress);
-    this.getForecast(this.userAddress);
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
       apiKey: ''
@@ -97,11 +115,11 @@ export class WeatherApplicationComponent implements OnInit {
       });
     })
   }
+
   // get a simple message from backend
   public getMessage(): void {
     this.weatherService.getMessage().subscribe(
       (response) => {
-
         this.message = response;
         console.log(this.message);
       }, (error: HttpErrorResponse) => {
@@ -127,7 +145,7 @@ export class WeatherApplicationComponent implements OnInit {
     if (this.weather.condition == 'Squail') this.conditionUrl = "https://st3.depositphotos.com/25280234/31824/v/950/depositphotos_318244518-stock-illustration-cute-cloud-blowing-storm-cloud.jpg?forcejpeg=true";
     if (this.weather.condition == 'Tornado') this.conditionUrl = "https://img.freepik.com/free-vector/cartoon-tornado-character-storm-whirlwind-twister-cyclone-hurricane-isolated-vector-funny-cute-tornado-wind-typhoon-cloud-emoji-with-face-smile-kids-cartoon-comic-weather-character_8071-10806.jpg?w=2000";
   }
-  
+
 
   // send cityname to backend and request a weather back
   public getWeather(userAddress: string): void {
@@ -135,6 +153,7 @@ export class WeatherApplicationComponent implements OnInit {
       (response: Weather) => {
         this.invalidLocation = false;
         this.weather = response;
+        // console.log(this.weather);
         this.getConditionImg(this.weather);
       }, (error: HttpErrorResponse) => {
         this.invalidLocation = true;
@@ -145,13 +164,33 @@ export class WeatherApplicationComponent implements OnInit {
   // send cityname to backend and request a forecast back
   public getForecast(userAddress: string): void {
     this.weatherService.getForecast(userAddress).subscribe(
-      (response:Forecast[]) => {
-        this.forecast = response;  
-      }, (error: HttpErrorResponse) => { 
+      (response: Forecast[]) => {
+        this.forecast = response;
+        let j = 0;
+        this.dayofweek = response[0].dateOfWeek;
+        for (let i = 0; i < response.length; i++) {
+
+          if (response[i].dateOfWeek != this.dayofweek) {
+            this.slices[j] = i;
+            this.dayofweek = response[i].dateOfWeek
+            j++;
+          }
+        }
+
+        for (let i = 0; i < this.slices.length; i++) {
+          console.log(this.slices[i]);
+
+        }
+        // this.getConditionImg(this.weather);
+      }, (error: HttpErrorResponse) => {
+
         alert(error.message)
       }
     );
+    this.loadForecest = true;
   }
+
+
 
   public convertToC(temp: any) {
     return ((temp - 32) * (5 / 9)).toFixed(2);

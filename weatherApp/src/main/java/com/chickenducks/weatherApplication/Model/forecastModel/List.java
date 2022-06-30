@@ -17,6 +17,7 @@ public class List {
     @JsonProperty("dt_txt")
     private String date;
 
+    private long dt;
     public Main getMain() {
         return main;
     }
@@ -49,6 +50,14 @@ public class List {
         this.wind = wind;
     }
 
+    public long getDt() {
+        return dt;
+    }
+
+    public void setDt(long dt) {
+        this.dt = dt;
+    }
+
     @Override
     public String toString() {
         return "List{" +
@@ -56,6 +65,7 @@ public class List {
                 ", condition=" + Arrays.toString(condition) +
                 ", wind=" + wind +
                 ", date='" + date + '\'' +
+                ", dt='" + dt + '\'' +
                 '}';
     }
 }

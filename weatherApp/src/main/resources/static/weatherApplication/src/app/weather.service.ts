@@ -41,6 +41,8 @@ import { AuthenticationService } from './login/auth.service';
     }
 
  
-    
+    public getAddress(username: string){
+      return this.http.get(`${this.apiServerUrl}/getAddress/${username}`,{responseType: 'text'});
+    }
 
   }

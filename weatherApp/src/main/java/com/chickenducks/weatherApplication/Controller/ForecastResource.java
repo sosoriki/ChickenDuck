@@ -15,6 +15,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.chickenducks.weatherApplication.Service.ForecastService;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,24 +30,7 @@ public class ForecastResource {
     public ForecastResource(ForecastService forecastService) {
         forecastServiceImpl = forecastService;
     }
-	
-//	 @GetMapping("/getForecast/location/{address}")
-//	 public ResponseEntity<Forecast> getForecast(@PathVariable String address ) {
-//		 UriComponents uri = UriComponentsBuilder.newInstance()
-//				 .scheme("http")
-//				 .host("localhost:8080")
-//				 .path("getForecast")
-//				 .queryParam("address", address)
-//				 .build();
-//		 System.out.println(uri.toUriString());
-//		 // calling /getforecast interface in GeocodeApiController
-//		 ResponseEntity<ForecastResponse> forecastResponse = new RestTemplate().getForEntity(uri.toUriString(), ForecastResponse.class);
-//		 Forecast forecast = forecastServiceImpl.forecast(forecastResponse);
-//		 System.out.println(forecast.toString());
-//		 return new ResponseEntity<Forecast>(forecast, HttpStatus.OK);
-//    }
-//
-//	ResponseEntity<ForecastResponse>
+
 	@GetMapping("/getForecast/location/{address}")
 	 public ResponseEntity<List<Forecast>> getForecast(@PathVariable String address ) {
 			 UriComponents uri = UriComponentsBuilder.newInstance()
@@ -60,13 +46,10 @@ public class ForecastResource {
 			 GeocoderResponse geocoderResponse = response.getBody();
 			 double lat = geocoderResponse.getResult()[0].getGeometry().getLocation().getLat();
 			 double lon = geocoderResponse.getResult()[0].getGeometry().getLocation().getLng();
-			 System.out.println("This lat:" + lat + " " + lon);
 			 ResponseEntity<ForecastResponse> forecastResponse = new RestTemplate().
 					 getForEntity("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + WEATHERAPIKEY + "&units=imperial", ForecastResponse.class);
-			 for(int i=0;i<40;i++){
-			 System.out.println(forecastResponse.getBody().getList()[i]);}
 			 List<Forecast> forecastList = forecastServiceImpl.forecast(forecastResponse);
-			 System.out.println(forecastList.toString());
+	System.out.println(forecastList);
 			 return new ResponseEntity<>(forecastList, HttpStatus.OK);
 
 

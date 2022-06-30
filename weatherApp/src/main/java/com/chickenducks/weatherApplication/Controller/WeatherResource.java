@@ -1,9 +1,6 @@
 package com.chickenducks.weatherApplication.Controller;
 
-import com.chickenducks.weatherApplication.Model.GeocoderResponse;
-import com.chickenducks.weatherApplication.Model.User;
-import com.chickenducks.weatherApplication.Model.WeatherResponse;
-import com.chickenducks.weatherApplication.Model.Weather;
+import com.chickenducks.weatherApplication.Model.*;
 import com.chickenducks.weatherApplication.Service.WeatherService;
 import com.chickenducks.weatherApplication.repo.UserRepo;
 
@@ -36,8 +33,8 @@ public class WeatherResource {
     public WeatherResource(WeatherService weatherService) {
         weatherServiceImpl = weatherService;
     }
-    private static final String GEOCODEAPIKEY = "";
-    private static final String WEATHERAPIKEY = "";
+    private static final String GEOCODEAPIKEY = "AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI";
+    private static final String WEATHERAPIKEY = "9846d9ed0f08a27e943b6150269d6330";
 
 
     /**
@@ -54,19 +51,18 @@ public class WeatherResource {
                 .queryParam("key", GEOCODEAPIKEY)
                 .queryParam("address", address)
                 .build();
-        System.out.println(uri.toUriString());
+
         ResponseEntity<GeocoderResponse> response = new RestTemplate().getForEntity(uri.toUriString(), GeocoderResponse.class);
         //extract the lag lng from response from geocode api
         GeocoderResponse geocoderResponse = response.getBody();
         double lat = geocoderResponse.getResult()[0].getGeometry().getLocation().getLat();
         double lon = geocoderResponse.getResult()[0].getGeometry().getLocation().getLng();
-        System.out.println("This lat:" + lat + " " + lon);
+
         ResponseEntity<WeatherResponse> weatherResponse = new RestTemplate().
                 getForEntity("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + WEATHERAPIKEY + "&units=imperial", WeatherResponse.class);
-        System.out.println(weatherResponse.toString());
 
         Weather weather = weatherServiceImpl.weather(weatherResponse);
-        System.out.println(weather);
+
         return new ResponseEntity<>(weather, HttpStatus.OK);
     }
     
@@ -110,7 +106,7 @@ public class WeatherResource {
 		updateUser.setAddress(user.getAddress());
 		updateUser.setEnabled(updateUser.getEnabled());
 		updateUser.setAnswer(updateUser.getAnswer());
-		
+
 		repo.save(updateUser);
 		
 		return new ResponseEntity<>(updateUser, HttpStatus.OK);
@@ -140,7 +136,6 @@ public class WeatherResource {
 			updateUser.setAnswer(updateUser.getAnswer());
 			
 			repo.save(updateUser);
-			
 			return new ResponseEntity<>(updateUser, HttpStatus.OK);
 		}
 		
@@ -169,6 +164,19 @@ public class WeatherResource {
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
 	}
 
+	@GetMapping("/getAddress/{userName}")
+	public String getAddress(@PathVariable String userName) {
+		Optional<User> user = repo.findByUsername(userName);
+		System.out.println("in getaddress");
+		String address = user.get().getAddress();
+		System.out.println(address);
+		if (address==null){
+			System.out.println("check");
+			return null;}
+
+		return address;
+
+	}
 
 
 //

@@ -28,7 +28,7 @@ public class Weather implements Serializable {
     private double humidity;
     private String iconUrl;
     private double speed;
-    private double deg;
+    private String deg;
     private double gust;
 
 
@@ -132,11 +132,11 @@ public class Weather implements Serializable {
         this.speed = speed;
     }
 
-    public double getDeg() {
+    public String getDeg() {
         return deg;
     }
 
-    public void setDeg(double deg) {
+    public void setDeg(String deg) {
         this.deg = deg;
     }
 

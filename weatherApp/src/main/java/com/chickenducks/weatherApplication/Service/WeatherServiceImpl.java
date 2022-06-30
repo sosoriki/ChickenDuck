@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
-
     @Override
     public Weather weather(ResponseEntity<WeatherResponse> weatherResponse) {
         Weather weather = new Weather();
@@ -23,17 +22,23 @@ public class WeatherServiceImpl implements WeatherService {
         weather.setCondition(weatherResponse.getBody().getCondition()[0].getMain());
         weather.setDescription(weatherResponse.getBody().getCondition()[0].getDescription());
         //weather detail
-        weather.setDeg(weatherResponse.getBody().getWind().getDeg());
+        weather.setDeg(convertDegreeToDirection(weatherResponse.getBody().getWind().getDeg()));
         weather.setSpeed(weatherResponse.getBody().getWind().getSpeed());
         weather.setHumidity(weatherResponse.getBody().getTemperature().getHumidity());
         weather.setFeels_like(weatherResponse.getBody().getTemperature().getFeels_like());
         weather.setPressure(weatherResponse.getBody().getTemperature().getPressure());
         weather.setHumidity(weatherResponse.getBody().getTemperature().getHumidity());
-        weather.setIconUrl(weatherResponse.getBody().getCondition()[0].getIcon());  // not finish
-
-
+        weather.setIconUrl( "http://openweathermap.org/img/wn/"+weatherResponse.getBody().getCondition()[0].getIcon()+"@2x.png");
 
         return weather;
 
+    }
+    @Override
+    public String convertDegreeToDirection(double degree) {
+        String[] directionArray = new String[]{"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"};
+        int index = (int) (degree% 360);
+        index = (int) ((index/ 22.5));
+        String compassDir = directionArray[index];
+        return compassDir;
     }
 }

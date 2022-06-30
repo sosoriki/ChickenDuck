@@ -10,4 +10,5 @@ public interface WeatherService {
 
     Weather weather(ResponseEntity<WeatherResponse> weatherResponse);
 
+    public String convertDegreeToDirection(double degree);
 }

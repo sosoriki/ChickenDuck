@@ -14,7 +14,12 @@ export interface Forecast{
     humidity:string;
     iconUrl:string;
     speed:number;
-    deg:number;
+    deg:string;
     date:string;
-
+	localTime:string
+    month:string
+	dateOfWeek:string
+	day:number
+	hour:string
+    shortTimezone:string
 }

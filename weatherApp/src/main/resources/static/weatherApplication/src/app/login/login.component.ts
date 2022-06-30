@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {WeatherService} from '../weather.service';
+import { HttpErrorResponse } from '@angular/common/http';
+ 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,12 +19,13 @@ export class LoginComponent implements OnInit {
   showErrorMessage = false;
   islogin = false;
   loggedInUsername = '';
-
+  userAddress = '';
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private weatherService:WeatherService
   ) { }
 
 
@@ -41,10 +45,12 @@ export class LoginComponent implements OnInit {
       password: '',
     })
   }
+ 
   display(): void {
     console.log("clicked");
   }
 
+  
   getLoggedUsername(){
     return this.loggedInUsername;
   }
@@ -54,6 +60,8 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.loggedInUsername = this.loginForm.value.username;
+      //call getaddress
+      this.getAddress(this.loginForm.value.username);
       this.successMessage = 'Login Successful.';
       this.router.navigate(['/main']);
       console.log("Success");
@@ -68,4 +76,17 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/logout']);
   }
 
+  public getAddress(username : string) {
+    this.weatherService.getAddress(username).subscribe(
+      (response:any) => {
+        console.log("Invoked getaddress");
+        this.userAddress = response;
+        console.log(this.userAddress);
+      }, (error: HttpErrorResponse) => {
+        
+        alert(error.message)
+      }
+
+    );
+  }
 }

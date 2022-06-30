@@ -20,5 +20,5 @@ export class RegisterService {
   registerAddress(user: User):Observable<any>{
     return this.http.put<User>(`${this.baseUrl}/registerAddress`, user, {responseType: 'json'});
   }
-  
+ 
 }

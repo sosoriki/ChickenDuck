@@ -17,7 +17,7 @@ public class WeatherApiController {
     //get API key from google doc and remember to remove when push
     private static final String APIKEY = "";
 
-    @RequestMapping("/testing")
+    @RequestMapping("/getMessage")
     public String testing() {
         return "test";
     }

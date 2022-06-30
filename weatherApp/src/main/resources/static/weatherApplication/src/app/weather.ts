@@ -14,7 +14,7 @@ export interface Weather{
     humidity:string;
     iconUrl:string;
     speed:number;
-    deg:number;
+    deg:string;
 
 
 
