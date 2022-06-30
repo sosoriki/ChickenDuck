@@ -9,6 +9,7 @@ The Google Maps API also serves multiple other services such as autofilling a us
 The frontend is built with Angular 12 and the backend is build with Spring Boot 2.7.0. 
 
 
+
 ### Installation
 - Clone this respository
 - Install below node_modules
@@ -28,11 +29,13 @@ The frontend is built with Angular 12 and the backend is build with Spring Boot 
   ![This is an image](https://i.postimg.cc/PfYHRrfj/image.png)
 
 
+
 ### How to run
 - To run the frontend, cd into this directory: `cd weatherApp/src/main/resources/static/weatherApplication`
 - Once in directory, type and enter `ng serve --o`, this will open up the tab at `localhost:4200` when it finishes compiling
 - To run the backend, open the project on the IDE of your choice and run the application
 - Make sure your SQL instance is correctly configures in applications.properties
+
 
 
 ### The application
@@ -44,6 +47,7 @@ The frontend is built with Angular 12 and the backend is build with Spring Boot 
 - After successful log in you will be taken to the main page in which you can search up your location and get weather details
 
 ![This is an image](https://i.postimg.cc/qBCWjkXd/image.png)
+
 
 
 ### Future plans
