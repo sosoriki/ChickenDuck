@@ -11,7 +11,7 @@
           height: 400px;">
         <div class="d-flex justify-content-center align-items-center h-100">
           <div class="text-white">
-            <h1 class="mb-3">Weather Channel</h1>
+            <h1 class="mb-3">WeatherDuck</h1>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
                 <div *ngIf="!invalidLocation" class="col-8 shadow-inner">
                   <p>Address: {{ userAddress}}</p>
                   <p>Weather: {{ weather?.condition }}</p>
-                  <p>Temperature: {{weather?.temp}} °F| {{convertToC(weather?.temp)}} °C</p>
+                  <p>Temperature: {{weather?.temp}} °F | {{convertToC(weather?.temp)}} °C</p>
                   <p>Description: {{weather?.description | titlecase}}</p>
                 </div>
                 <div *ngIf="!invalidLocation" class="col-4 ">

@@ -37,6 +37,8 @@ export class WeatherApplicationComponent implements OnInit {
   invalidLocation: boolean = false;
   loadForecest: boolean = false;
   panelOpenState = false;
+  public asd!: string;
+
   handleAddressChange = async (address: any) => {
 
     this.userAddress = address.formatted_address
@@ -77,43 +79,15 @@ export class WeatherApplicationComponent implements OnInit {
   constructor(private weatherService: WeatherService, private authenticationService: AuthenticationService,
     private router: Router, private loginComponent: LoginComponent) {
 
-
   }
+
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
   ngOnInit() {
     if (this.authenticationService.isUserLoggedIn() == false) {
       this.router.navigate(['/error']);
     }
-    this.userAddress = "5001 Statesman Dr, Irving, TX 75063"
-
-    console.log("request:", this.loginComponent.userAddress);
-    //get address from loginComponent 
-    if (this.loginComponent.userAddress != '') {
-      this.userAddress = this.loginComponent.userAddress;
-
-    }
-    console.log(this.userAddress);
-
-    this.getWeather(this.userAddress);
-    let loader = new Loader({
-      //get API key from google doc and remember to remove when push
-      apiKey: ''
-    })
-    //add google map
-    loader.load().then(() => {
-      const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-        center: { lat: 32.93619290000001, lng: -97.0151767 },
-        zoom: 11,
-        // add google map marker
-      });
-      new google.maps.Marker({
-        position: { lat: 32.93619290000001, lng: -97.0151767 },
-        map,
-        title: "Location",
-        icon: "",
-      });
-    })
+    this.getAddress(this.authenticationService.getLoggedInUserName());
   }
 
   // get a simple message from backend
@@ -128,6 +102,27 @@ export class WeatherApplicationComponent implements OnInit {
 
     );
   }
+
+  public getAddress(username : string) {
+    this.weatherService.getAddress(username).subscribe(
+      (response:any) => {
+        console.log("Invoked getaddress");
+        console.log(response);
+        this.userAddress = response;
+        console.log("from login 2 " + this.userAddress);
+        if(this.userAddress == ''){
+          this.userAddress = "5001 Statesman Dr, Irving, TX 75063";
+        }
+        this.getWeather(this.userAddress);
+        this.getForecast(this.userAddress);
+      }, (error: HttpErrorResponse) => {
+        
+        alert(error.message)
+      }
+
+    );
+  }
+
   getConditionImg(weather: Weather): void {
     if (this.weather.condition == 'Clouds') this.conditionUrl = "https://pbs.twimg.com/media/ETtjLCrVAAYPFqv.jpg";
     if (this.weather.condition == 'Clear') this.conditionUrl = "https://thumbs.dreamstime.com/b/blue-sky-white-clouds-day-as-panorama-header-blue-sky-white-clouds-as-header-143601619.jpg";
@@ -153,7 +148,26 @@ export class WeatherApplicationComponent implements OnInit {
       (response: Weather) => {
         this.invalidLocation = false;
         this.weather = response;
-        // console.log(this.weather);
+        this.userLatitude = this.weather.latitude;
+        this.userLongitude = this.weather.longitude;
+        let loader = new Loader({
+          //get API key from google doc and remember to remove when push
+          apiKey: ''
+        })
+        //add google map
+        loader.load().then(() => {
+          const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+            center: { lat: this.userLatitude, lng: this.userLongitude },
+            zoom: 11,
+            // add google map marker
+          });
+          new google.maps.Marker({
+            position: { lat: this.userLatitude, lng: this.userLongitude },
+            map,
+            title: "Location",
+            icon: "",
+          });
+        })
         this.getConditionImg(this.weather);
       }, (error: HttpErrorResponse) => {
         this.invalidLocation = true;

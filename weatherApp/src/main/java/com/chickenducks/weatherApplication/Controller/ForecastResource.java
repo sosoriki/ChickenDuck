@@ -49,7 +49,7 @@ public class ForecastResource {
 			 ResponseEntity<ForecastResponse> forecastResponse = new RestTemplate().
 					 getForEntity("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + WEATHERAPIKEY + "&units=imperial", ForecastResponse.class);
 			 List<Forecast> forecastList = forecastServiceImpl.forecast(forecastResponse);
-	System.out.println(forecastList);
+			 System.out.println(forecastList);
 			 return new ResponseEntity<>(forecastList, HttpStatus.OK);
 
 

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private weatherService:WeatherService
+    private weatherService: WeatherService
   ) { }
 
 
@@ -48,6 +48,10 @@ export class LoginComponent implements OnInit {
  
   display(): void {
     console.log("clicked");
+  }
+
+  getUserAddress(){
+    return this.userAddress;
   }
 
   
@@ -81,7 +85,7 @@ export class LoginComponent implements OnInit {
       (response:any) => {
         console.log("Invoked getaddress");
         this.userAddress = response;
-        console.log(this.userAddress);
+        console.log("from login " + this.userAddress);
       }, (error: HttpErrorResponse) => {
         
         alert(error.message)

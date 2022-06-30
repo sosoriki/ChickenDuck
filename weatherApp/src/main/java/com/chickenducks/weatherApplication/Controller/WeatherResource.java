@@ -33,8 +33,8 @@ public class WeatherResource {
     public WeatherResource(WeatherService weatherService) {
         weatherServiceImpl = weatherService;
     }
-    private static final String GEOCODEAPIKEY = "AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI";
-    private static final String WEATHERAPIKEY = "9846d9ed0f08a27e943b6150269d6330";
+    private static final String GEOCODEAPIKEY = "";
+    private static final String WEATHERAPIKEY = "";
 
 
     /**
