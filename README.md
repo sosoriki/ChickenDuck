@@ -1,5 +1,5 @@
 # WeatherDuck
-## A ChickenDuck Application
+## _A ChickenDuck Application_
 
 ### Overview
 The WeatherDuck application is an application aimed at telling the current weather, specific details, and future forecasts of any location. 
