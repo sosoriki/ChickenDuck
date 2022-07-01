@@ -110,14 +110,11 @@ export class ProfileComponent implements OnInit {
     console.log(this.user.username);
     console.log(this.user.password);
     //update token
- 
     this.passwordService.forgotPasswordNoUsername(this.user).subscribe(result => {
       this.authenticationService.logout();
       this.authenticationService.authenticationService(this.user.username, this.user.password).subscribe(result=>{
         console.log("changed");
       });
-
-
     },(error: HttpErrorResponse) => {
       console.log("wrong password");
       alert(error.message);

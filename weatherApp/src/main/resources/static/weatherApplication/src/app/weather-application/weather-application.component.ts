@@ -152,32 +152,13 @@ export class WeatherApplicationComponent implements OnInit {
   }
 
 
-  // send cityname to backend and request a weather back
-  public getWeather(userAddress: string): void {
+   // send cityname to backend and request a weather back
+   public getWeather(userAddress: string): void {
     this.weatherService.getWeather(userAddress).subscribe(
       (response: Weather) => {
         this.invalidLocation = false;
         this.weather = response;
-        this.userLatitude = this.weather.latitude;
-        this.userLongitude = this.weather.longitude;
-        let loader = new Loader({
-          //get API key from google doc and remember to remove when push
-          apiKey: ''
-        })
-        //add google map
-        loader.load().then(() => {
-          const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-            center: { lat: this.userLatitude, lng: this.userLongitude },
-            zoom: 11,
-            // add google map marker
-          });
-          new google.maps.Marker({
-            position: { lat: this.userLatitude, lng: this.userLongitude },
-            map,
-            title: "Location",
-            icon: "",
-          });
-        })
+        // console.log(this.weather);
         this.getConditionImg(this.weather);
       }, (error: HttpErrorResponse) => {
         this.invalidLocation = true;
