@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { EMPTY, map, mergeMap, Observable } from 'rxjs';
-import { Userdata } from '../userdata';
 import { AuthenticationService } from "../login/auth.service"
 import {WeatherService} from '../weather.service'
 import { HttpErrorResponse } from '@angular/common/http';
@@ -13,7 +12,6 @@ export class WeatherResolverService implements Resolve<any>{
   username: any;
   address:string='';
   loginForm: any;
-  userdata!: Userdata;
   message :string='';
 constructor(private  authenticationService: AuthenticationService, private weatherService:WeatherService, private router: Router){}
   // : Observable<Userdata> | Promise<Userdata> | Userdata

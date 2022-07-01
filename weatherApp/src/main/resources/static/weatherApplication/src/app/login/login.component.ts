@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {WeatherService} from '../weather.service';
 import { HttpErrorResponse } from '@angular/common/http';
  
@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   initializeForm(): void {
     this.loginForm = this.fb.group({
-      username: '',
-      password: '',
+      username: ['',[Validators.required]],
+      password: ['', [Validators.required]]
     })
   }
  

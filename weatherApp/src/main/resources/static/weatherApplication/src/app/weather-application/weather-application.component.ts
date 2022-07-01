@@ -6,7 +6,6 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { AuthenticationService } from "../login/auth.service"
 import { ActivatedRoute, Router } from '@angular/router';
 import { Forecast } from '../forecast';
-import { Userdata } from '../userdata';
 
 
 
@@ -38,7 +37,7 @@ export class WeatherApplicationComponent implements OnInit {
   invalidLocation: boolean = false;
   loadForecest: boolean = false;
   panelOpenState = false;
-  public userdata!:Userdata;
+  
   handleAddressChange = async (address: any) => {
     this.loadForecest=false;
     this.userAddress = address.formatted_address
@@ -55,7 +54,7 @@ export class WeatherApplicationComponent implements OnInit {
 
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: ''
+      apiKey: 'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI'
     })
     //add google map
     loader.load().then(() => {
@@ -96,13 +95,13 @@ export class WeatherApplicationComponent implements OnInit {
       this.userAddress = data['addressdata']['address'];
       this.getConditionImg(this.weather);
     });
-    console.log(this.weather.latitude);
-    console.log(this.weather.longitude);
+    // console.log(this.weather.latitude);
+    // console.log(this.weather.longitude);
     this.getForecast(this.userAddress);
 
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: ''
+      apiKey: 'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI'
     })
     //add google map
     loader.load().then(() => {

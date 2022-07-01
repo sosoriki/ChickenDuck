@@ -12,6 +12,7 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    files:['src/main/resources/static/weatherApplication/node_modules/@types/google.maps'],
     client: {
       jasmine: {
         // you can add configuration options for Jasmine here
