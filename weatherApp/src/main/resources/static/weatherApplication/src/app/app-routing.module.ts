@@ -6,11 +6,15 @@ import { WeatherApplicationComponent } from './weather-application/weather-appli
 import { ErrorComponent } from './error/error.component'; 
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotComponent } from './forgot/forgot.component';
+import { WeatherResolverService } from './weather-application/weather-resolver.service';
 
 
 const routes: Routes = [
   {path:'',  component: LoginComponent},
-  {path:'main',component: WeatherApplicationComponent,},
+  {path:'main',
+  component: WeatherApplicationComponent,
+  resolve:{addressdata: WeatherResolverService}
+},
   {path:'logout', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'error',component: ErrorComponent},

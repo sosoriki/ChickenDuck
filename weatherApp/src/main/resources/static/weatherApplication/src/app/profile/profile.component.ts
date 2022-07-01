@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
     private auth: AuthenticationService,
     private passwordService: ForgotService,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+ 
     ) {
       this.user = {
         username:'',
@@ -108,8 +109,15 @@ export class ProfileComponent implements OnInit {
     this.user.password = this.passwordForm.value.newPassword;
     console.log(this.user.username);
     console.log(this.user.password);
+    //update token
+ 
     this.passwordService.forgotPasswordNoUsername(this.user).subscribe(result => {
-      console.log("same password");
+      this.authenticationService.logout();
+      this.authenticationService.authenticationService(this.user.username, this.user.password).subscribe(result=>{
+        console.log("changed");
+      });
+
+
     },(error: HttpErrorResponse) => {
       console.log("wrong password");
       alert(error.message);
