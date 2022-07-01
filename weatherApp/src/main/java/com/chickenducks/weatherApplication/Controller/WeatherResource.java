@@ -1,6 +1,7 @@
 package com.chickenducks.weatherApplication.Controller;
 
 import com.chickenducks.weatherApplication.Model.*;
+import com.chickenducks.weatherApplication.Service.ForecastService;
 import com.chickenducks.weatherApplication.Service.WeatherService;
 import com.chickenducks.weatherApplication.repo.UserRepo;
 
@@ -62,10 +63,12 @@ public class WeatherResource {
                 getForEntity("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + WEATHERAPIKEY + "&units=imperial", WeatherResponse.class);
 
         Weather weather = weatherServiceImpl.weather(weatherResponse);
-
+		System.out.println(weather);
         return new ResponseEntity<>(weather, HttpStatus.OK);
     }
-    
+
+
+
     @Autowired
     private UserRepo repo;
 	
@@ -171,7 +174,7 @@ public class WeatherResource {
 		String address = user.get().getAddress();
 		System.out.println(address);
 		if (address==null){
-			System.out.println("check");
+			System.out.println("No address in db");
 			return null;}
 
 		return address;

@@ -29,7 +29,7 @@ export class AuthenticationService {
       }));
   }
 
-  createBasicAuthToken(username: String, password: String) {
+createBasicAuthToken(username: String, password: String) {
     console.log("entered username:", username);
     console.log("entered password:", password);
     return 'Basic ' + window.btoa(username + ":" + password)

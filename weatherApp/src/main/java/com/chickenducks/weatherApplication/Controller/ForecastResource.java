@@ -15,21 +15,19 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.chickenducks.weatherApplication.Service.ForecastService;
 
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class ForecastResource {
 	private final ForecastService forecastServiceImpl;
+
+	@Autowired
+	public ForecastResource(ForecastService forecastService) {
+		forecastServiceImpl = forecastService;
+	}
 	private static final String GEOCODEAPIKEY = "";
 	private static final String WEATHERAPIKEY = "";
-	@Autowired
-    public ForecastResource(ForecastService forecastService) {
-        forecastServiceImpl = forecastService;
-    }
+
 
 	@GetMapping("/getForecast/location/{address}")
 	 public ResponseEntity<List<Forecast>> getForecast(@PathVariable String address ) {

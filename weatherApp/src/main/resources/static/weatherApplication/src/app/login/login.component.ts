@@ -60,12 +60,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authenticationService.authenticationService(this.loginForm.value.username, this.loginForm.value.password).subscribe((result) => {
+    this.authenticationService.authenticationService(this.loginForm.value.username, this.loginForm.value.password).subscribe(async (result) => {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.loggedInUsername = this.loginForm.value.username;
-      //call getaddress
-      this.getAddress(this.loginForm.value.username);
       this.successMessage = 'Login Successful.';
       this.router.navigate(['/main']);
       console.log("Success");
@@ -80,17 +78,16 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/logout']);
   }
 
-  public getAddress(username : string) {
-    this.weatherService.getAddress(username).subscribe(
-      (response:any) => {
-        console.log("Invoked getaddress");
-        this.userAddress = response;
-        console.log("from login " + this.userAddress);
-      }, (error: HttpErrorResponse) => {
-        
-        alert(error.message)
-      }
+  // async getAddress(username : string) {
+  //   this.weatherService.getAddress(username).subscribe(
+  //     (response:any) => {
+  //       console.log("Invoked getaddress");
+  //       this.userAddress = response;
+  //       console.log(this.userAddress);
+  //     }, (error: HttpErrorResponse) => {
+  //       alert(error.message)
+  //     }
 
-    );
-  }
+  //   );
+  // }
 }
