@@ -58,7 +58,7 @@ The frontend is built with Angular 12 and the backend is build with Spring Boot 
 
 - After successful log in you will be taken to the main page in which you can search up your location and get weather details
 
-  ![This is an image](https://i.postimg.cc/qBCWjkXd/image.png)
+  ![This is an image](https://i.postimg.cc/Bv1D5q1M/image.png)
 
 
 
