@@ -17,6 +17,9 @@ constructor(private  authenticationService: AuthenticationService, private weath
   // : Observable<Userdata> | Promise<Userdata> | Userdata
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {     
     this.username = this.authenticationService.getLoggedInUserName();
+    if (this.authenticationService.isUserLoggedIn() == false) {
+      this.router.navigate(['/error']);
+    }
     
       return this.weatherService.getAddress(this.username).pipe(mergeMap((res) => {
         let data : any = {}

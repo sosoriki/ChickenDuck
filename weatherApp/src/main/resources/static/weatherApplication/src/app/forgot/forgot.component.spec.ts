@@ -43,4 +43,14 @@ describe('ForgotComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('forgot form validity', () => {
+    expect(component.forgotForm.valid).toBeFalsy();
+    component.forgotForm.controls['username'].setValue("bob");
+    component.forgotForm.controls['password'].setValue("bobspassword");
+    expect(component.forgotForm.valid).toBeFalsy();
+    component.forgotForm.controls['answer'].setValue("banana");
+    expect(component.forgotForm.valid).toBeTruthy();
+  });
+
 });

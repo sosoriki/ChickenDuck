@@ -43,4 +43,18 @@ describe('ProfileComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('address form works', () => {
+    component.infoForm.controls['userAddress'].setValue("Seattle, WA, USA");
+    expect(component.infoForm.valid).toBeTruthy();
+  });
+
+  it('password form works', () => {
+    expect(component.passwordForm.valid).toBeFalsy();
+    component.passwordForm.controls['newPassword'].setValue("123");
+    expect(component.passwordForm.valid).toBeFalsy();
+    component.passwordForm.controls['newPassword'].setValue("123456");
+    expect(component.passwordForm.valid).toBeTruthy();
+  });
+
 });

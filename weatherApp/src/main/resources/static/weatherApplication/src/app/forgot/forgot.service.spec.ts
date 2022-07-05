@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpInterceptorService } from '../HttpInterceptorService';
 import { LoginComponent } from '../login/login.component';
 import { ForgotComponent } from './forgot.component';
-
 import { ForgotService } from './forgot.service';
+
 
 describe('ForgotService', () => {
   let service: ForgotService;
@@ -18,7 +18,6 @@ describe('ForgotService', () => {
       ],
       imports: [
         HttpClientModule,
-    
          
       ],
       providers: [{
@@ -38,4 +37,5 @@ describe('ForgotService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });

@@ -6,6 +6,7 @@ import { AuthenticationService } from '../login/auth.service';
 import { RegisterService } from '../register/register.service';
 import { User } from '../user'; 
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -48,7 +49,7 @@ export class ProfileComponent implements OnInit {
   passwordForm!: FormGroup;
   initializeForm(): void {
     this.infoForm = this.fb.group({
-      userAddress: ""
+      userAddress: '',
     })
     this.passwordForm = this.fb.group({
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -90,6 +91,11 @@ export class ProfileComponent implements OnInit {
     console.log(this.user.address);
     this.updateAddress.registerAddress(this.user).subscribe(result => {
       console.log("Address registered!");
+      Swal.fire({
+        title: 'SUCCESS',
+        text: 'Address updated.',
+        icon: 'success',
+      })
     },(error: HttpErrorResponse) => {
       console.log("Failed register");
       alert(error.message);
@@ -114,6 +120,11 @@ export class ProfileComponent implements OnInit {
       this.authenticationService.logout();
       this.authenticationService.authenticationService(this.user.username, this.user.password).subscribe(result=>{
         console.log("changed");
+        Swal.fire({
+          title: 'SUCCESS',
+          text: 'Password changed.',
+          icon: 'success',
+        })
       });
     },(error: HttpErrorResponse) => {
       console.log("wrong password");

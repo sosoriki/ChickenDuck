@@ -54,7 +54,7 @@ export class WeatherApplicationComponent implements OnInit {
 
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: 'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI'
+      apiKey: ''
     })
     //add google map
     loader.load().then(() => {
@@ -84,9 +84,9 @@ export class WeatherApplicationComponent implements OnInit {
   // A lifecycle hook that is called after Angular has initialized
   // all data-bound properties of a directive
   ngOnInit() {
-     if (this.authenticationService.isUserLoggedIn() == false) {
-      this.router.navigate(['/error']);
-    }
+    //  if (this.authenticationService.isUserLoggedIn() == false) {
+    //   this.router.navigate(['/error']);
+    // }
     this.activatedRoute.data.subscribe((data) =>{
       console.log("I am printing out data: ",data);
       console.log("I am printing out data1: ",data['addressdata']['address']);
@@ -101,7 +101,7 @@ export class WeatherApplicationComponent implements OnInit {
 
     let loader = new Loader({
       //get API key from google doc and remember to remove when push
-      apiKey: 'AIzaSyAQOMJ-2DMAH6B1ymW9rz__ScWIE4czcfI'
+      apiKey: ''
     })
     //add google map
     loader.load().then(() => {
