@@ -72,3 +72,8 @@ The frontend is built with Angular 12 and the backend is build with Spring Boot 
     - This would require us to allow users to use the application without an account
     - If the user would make an account and login, there will be more benefits such as information shown
     - Bring maybe a subscription base or donations to keep application running and the account would not be shown advertisements
+    
+    
+    
+### Demo
+[![This is a video](https://i.postimg.cc/t70LtvXT/image.png)](https://youtu.be/oZJU7CJYhI0)
